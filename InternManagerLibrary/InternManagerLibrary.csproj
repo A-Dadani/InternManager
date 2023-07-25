@@ -3,11 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Kimtoo.SvgProvider" Version="1.0.0" />
+    <PackageReference Include="MySql.Data" Version="8.1.0" />
   </ItemGroup>
 
 </Project>
