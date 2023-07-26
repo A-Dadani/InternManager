@@ -12,7 +12,6 @@ namespace InternManagerLibrary
 	{
 		// TODO: Find a way to store DB creds in env file
 		// TODO: upgrade to stored procedures for better safety
-		// TODO: move creds to global config
 		private string _connectionString = @"datasource=localhost;port=3306;database=intern_manager;username=dev;password=devpass;";
 
 		private string HashPasswordSHA256(string password)

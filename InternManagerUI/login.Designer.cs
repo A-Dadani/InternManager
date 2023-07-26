@@ -39,7 +39,6 @@
 			emailMaskedTextBox = new MaskedTextBox();
 			seConnecterLabel = new Label();
 			logoPictureBox = new PictureBox();
-			backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			backroundSmallPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
 			SuspendLayout();
@@ -200,7 +199,6 @@
 		private Button signInButton;
 		private LinkLabel createRequestLinkLabel;
 		private Label noAccountLabel;
-		private System.ComponentModel.BackgroundWorker backgroundWorker1;
 		private Label credentialsWarnLabel;
 	}
 }

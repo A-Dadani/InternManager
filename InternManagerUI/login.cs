@@ -10,6 +10,7 @@ namespace InternManagerUI
 		public login()
 		{
 			InitializeComponent();
+			DoubleBuffered = true;
 		}
 
 		private void emailMaskedTextBox_Enter(object sender, EventArgs e)
@@ -74,7 +75,7 @@ namespace InternManagerUI
 			{
 				GlobalConfig.Connection.Authenticate(emailMaskedTextBox.Text.Trim(), passwordMaskedTextBox.Text);
 			}
-			catch (Exception ex) 
+			catch (Exception ex)
 			{
 				if (ex.Message == "failed_auth")
 				{

@@ -9,10 +9,26 @@ namespace InternManagerLibrary
 	public static class GlobalConfig
 	{
 		public static IDataConnection Connection { get; set; } = null;
+
 		public static void InitializeConnection()
 		{
 			Connection = new SqlConnector();
 		}
-		public static AdminModel connectedUser { get; set; } = null;
+
+		private static AdminModel _connectedUser = null;
+		public static AdminModel connectedUser { 
+			get
+			{
+				if (_connectedUser == null)
+				{
+					throw new Exception("not_authenticated");
+				}
+				return _connectedUser;
+			}
+			set
+			{
+				_connectedUser = value;
+			}
+		}
 	}
 }

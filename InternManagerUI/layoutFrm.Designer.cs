@@ -29,18 +29,45 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(layoutFrm));
-			PLACEHOLDER = new Label();
+			panel1 = new Panel();
+			greetingsLabel = new Label();
+			logoPictureBox = new PictureBox();
+			panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
 			SuspendLayout();
 			// 
-			// PLACEHOLDER
+			// panel1
 			// 
-			PLACEHOLDER.AutoSize = true;
-			PLACEHOLDER.Font = new Font("Segoe UI", 48F, FontStyle.Regular, GraphicsUnit.Point);
-			PLACEHOLDER.Location = new Point(193, 289);
-			PLACEHOLDER.Name = "PLACEHOLDER";
-			PLACEHOLDER.Size = new Size(852, 86);
-			PLACEHOLDER.TabIndex = 0;
-			PLACEHOLDER.Text = "PLACEHOLDER AFTER LOGIN";
+			panel1.BackColor = Color.FromArgb(13, 13, 13);
+			panel1.Controls.Add(greetingsLabel);
+			panel1.Controls.Add(logoPictureBox);
+			panel1.Dock = DockStyle.Top;
+			panel1.Location = new Point(0, 0);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(1264, 70);
+			panel1.TabIndex = 0;
+			// 
+			// greetingsLabel
+			// 
+			greetingsLabel.AutoSize = true;
+			greetingsLabel.BackColor = Color.Transparent;
+			greetingsLabel.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
+			greetingsLabel.ForeColor = Color.White;
+			greetingsLabel.Location = new Point(259, 15);
+			greetingsLabel.Name = "greetingsLabel";
+			greetingsLabel.Size = new Size(117, 40);
+			greetingsLabel.TabIndex = 1;
+			greetingsLabel.Text = "Bonjour";
+			// 
+			// logoPictureBox
+			// 
+			logoPictureBox.BackgroundImage = Properties.Resources.logo_white;
+			logoPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			logoPictureBox.Location = new Point(8, 7);
+			logoPictureBox.Name = "logoPictureBox";
+			logoPictureBox.Size = new Size(172, 56);
+			logoPictureBox.TabIndex = 0;
+			logoPictureBox.TabStop = false;
 			// 
 			// layoutFrm
 			// 
@@ -48,18 +75,23 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.FromArgb(244, 246, 249);
 			ClientSize = new Size(1264, 681);
-			Controls.Add(PLACEHOLDER);
+			Controls.Add(panel1);
+			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			MaximizeBox = false;
 			Name = "layoutFrm";
-			Text = "layoutFrm";
+			Text = "Tableau de bord • OCP";
 			Load += layoutFrm_Load;
+			panel1.ResumeLayout(false);
+			panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
 			ResumeLayout(false);
-			PerformLayout();
 		}
 
 		#endregion
 
-		private Label PLACEHOLDER;
+		private Panel panel1;
+		private PictureBox logoPictureBox;
+		private Label greetingsLabel;
 	}
 }

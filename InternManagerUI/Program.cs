@@ -12,7 +12,9 @@ namespace InternManagerUI
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			InternManagerLibrary.GlobalConfig.InitializeConnection();
+			// TODO: THIS IS TEMPORARY
 			Application.Run(new login());
+			//Application.Run(new layoutFrm());
 		}
 	}
 }
