@@ -86,6 +86,7 @@ namespace InternManagerUI
 				}
 				credentialsWarnLabel.Show();
 				Cursor = System.Windows.Forms.Cursors.Default;
+				return;
 			}
 
 			var layoutForm = new layoutFrm();
