@@ -1,9 +1,12 @@
 using System.Text.RegularExpressions;
+using InternManagerLibrary;
 
 namespace InternManagerUI
 {
 	public partial class login : Form
 	{
+		// Add the logos and reveal password button
+
 		public login()
 		{
 			InitializeComponent();
@@ -54,15 +57,43 @@ namespace InternManagerUI
 
 		private void signInButton_Click(object sender, EventArgs e)
 		{
+			emailWarnLabel.Hide();
+			credentialsWarnLabel.Hide();
+
 			Cursor = System.Windows.Forms.Cursors.WaitCursor;
 			string emailRegex = @"^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$";
 
-			if (!Regex.IsMatch(emailMaskedTextBox.Text, emailRegex))
+			if (!Regex.IsMatch(emailMaskedTextBox.Text.Trim(), emailRegex))
 			{
 				emailWarnLabel.Show();
 				Cursor = System.Windows.Forms.Cursors.Default;
 				return;
 			}
+
+			try
+			{
+				GlobalConfig.Connection.Authenticate(emailMaskedTextBox.Text.Trim(), passwordMaskedTextBox.Text);
+			}
+			catch (Exception ex) 
+			{
+				if (ex.Message == "failed_auth")
+				{
+					credentialsWarnLabel.Text = "Email ou mot de passe érroné";
+				}
+				else
+				{
+					credentialsWarnLabel.Text = $"Erreur inconnue: {ex.Message}";
+				}
+				credentialsWarnLabel.Show();
+				Cursor = System.Windows.Forms.Cursors.Default;
+			}
+
+			var layoutForm = new layoutFrm();
+			layoutForm.Location = Location;
+			layoutForm.StartPosition = FormStartPosition.Manual;
+			layoutForm.FormClosing += delegate { Close(); };
+			layoutForm.Show();
+			Hide();
 		}
 	}
 }

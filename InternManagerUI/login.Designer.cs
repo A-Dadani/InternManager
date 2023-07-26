@@ -30,6 +30,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login));
 			backroundSmallPanel = new Panel();
+			credentialsWarnLabel = new Label();
 			createRequestLinkLabel = new LinkLabel();
 			noAccountLabel = new Label();
 			signInButton = new Button();
@@ -39,7 +40,6 @@
 			seConnecterLabel = new Label();
 			logoPictureBox = new PictureBox();
 			backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-			credentialsWarnLabel = new Label();
 			backroundSmallPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
 			SuspendLayout();
@@ -59,6 +59,18 @@
 			backroundSmallPanel.Name = "backroundSmallPanel";
 			backroundSmallPanel.Size = new Size(598, 473);
 			backroundSmallPanel.TabIndex = 0;
+			// 
+			// credentialsWarnLabel
+			// 
+			credentialsWarnLabel.AutoSize = true;
+			credentialsWarnLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+			credentialsWarnLabel.ForeColor = Color.FromArgb(217, 68, 82);
+			credentialsWarnLabel.Location = new Point(37, 293);
+			credentialsWarnLabel.Name = "credentialsWarnLabel";
+			credentialsWarnLabel.Size = new Size(237, 20);
+			credentialsWarnLabel.TabIndex = 8;
+			credentialsWarnLabel.Text = "E-mail ou mot de passe pas valide";
+			credentialsWarnLabel.Visible = false;
 			// 
 			// createRequestLinkLabel
 			// 
@@ -154,18 +166,6 @@
 			logoPictureBox.Size = new Size(200, 65);
 			logoPictureBox.TabIndex = 0;
 			logoPictureBox.TabStop = false;
-			// 
-			// credentialsWarnLabel
-			// 
-			credentialsWarnLabel.AutoSize = true;
-			credentialsWarnLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-			credentialsWarnLabel.ForeColor = Color.FromArgb(217, 68, 82);
-			credentialsWarnLabel.Location = new Point(37, 293);
-			credentialsWarnLabel.Name = "credentialsWarnLabel";
-			credentialsWarnLabel.Size = new Size(237, 20);
-			credentialsWarnLabel.TabIndex = 8;
-			credentialsWarnLabel.Text = "E-mail ou mot de passe pas valide";
-			credentialsWarnLabel.Visible = false;
 			// 
 			// login
 			// 

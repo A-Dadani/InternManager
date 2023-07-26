@@ -13,7 +13,7 @@ namespace InternManagerLibrary
 		// TODO: Find a way to store DB creds in env file
 		// TODO: upgrade to stored procedures for better safety
 		// TODO: move creds to global config
-		private string _connectionString = @"datasource = localhost; port=3306;username=dev;password=devpass";
+		private string _connectionString = @"datasource=localhost;port=3306;database=intern_manager;username=dev;password=devpass;";
 
 		private string HashPasswordSHA256(string password)
 		{
@@ -74,9 +74,11 @@ namespace InternManagerLibrary
 				throw new Exception("failed_auth");
 			}
 
+			passwordReader.Close();
+
 			string userSelectionQuery = @"SELECT `id`, `full_name` FROM admins WHERE email=""" + email + @""";";
 			MySqlCommand userSelectionCommand = new MySqlCommand(userSelectionQuery, connection);
-			MySqlDataReader userReader = passwordSelectionCommand.ExecuteReader();
+			MySqlDataReader userReader = userSelectionCommand.ExecuteReader();
 
 			int Id;
 			string fullName = string.Empty;
@@ -91,7 +93,7 @@ namespace InternManagerLibrary
 				//this should never happen
 				throw new Exception("unknown_error");
 			}
-
+			userReader.Close();
 			connection.Close();
 
 			GlobalConfig.connectedUser = new AdminModel(Id, fullName, email);
