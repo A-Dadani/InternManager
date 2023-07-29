@@ -61,6 +61,8 @@
 			logoutPanel.Size = new Size(242, 49);
 			logoutPanel.TabIndex = 1;
 			logoutPanel.Click += logoutPanel_Click;
+			logoutPanel.MouseEnter += logoutPanel_MouseEnter;
+			logoutPanel.MouseLeave += logoutPanel_MouseLeave;
 			// 
 			// logoutLabel
 			// 
