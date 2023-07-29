@@ -13,29 +13,67 @@ namespace InternManagerUI
 {
 	public partial class layoutFrm : Form
 	{
+		private bool isLoggedOut = true;
 		public layoutFrm()
 		{
 			InitializeComponent();
-			try
+			if (!GlobalConfig.IsUserAuthenticated())
 			{
-				greetingsLabel.Text = $"Bonjour {GlobalConfig.connectedUser.FullName}";
-			}
-			catch (Exception ex)
-			{
-				string msg = $"Erreur inconnue: {ex.Message}";
-				if (ex.Message == "not_authenticated")
-				{
-					msg = "Vous n'êtes pas connectés";
-				}
-				MessageBox.Show(msg, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Vous n'êtes pas connectés", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				// Kill process if not signed in
 				Environment.Exit(0);
+			}
+			BubbleClick(logoutPanel, logoutPanel_Click);
+			isLoggedOut = false;
+		}
+
+		/// <summary>
+		/// Bubble the click event to the parent (works on only 1 generation)
+		/// </summary>
+		/// <param name="parent">The parent panel</param>
+		private void BubbleClick(Panel parent, EventHandler clickBehavior)
+		{
+			foreach (var child in parent.Controls)
+			{
+				switch (child)
+				{
+					case Label childLabel:
+						childLabel.MouseClick += new MouseEventHandler(clickBehavior);
+						break;
+					case PictureBox childPictureBox:
+						childPictureBox.MouseClick += new MouseEventHandler(clickBehavior);
+						break;
+					default:
+						throw new ArgumentException();
+				}
 			}
 		}
 
 		private void layoutFrm_Load(object sender, EventArgs e)
 		{
 
+		}
+
+		private void logoutPanel_Click(object? sender, EventArgs e)
+		{
+			isLoggedOut = true;
+			Close();
+		}
+
+		private void layoutFrm_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			if (e.CloseReason == CloseReason.UserClosing)
+			{
+				if (isLoggedOut)
+				{
+					GlobalConfig.logoutUser();
+					Owner.Show();
+				}
+				else
+				{
+					Application.Exit();
+				}
+			}
 		}
 	}
 }

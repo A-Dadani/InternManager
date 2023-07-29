@@ -16,6 +16,7 @@ namespace InternManagerLibrary
 		}
 
 		private static AdminModel _connectedUser = null;
+
 		public static AdminModel connectedUser { 
 			get
 			{
@@ -29,6 +30,20 @@ namespace InternManagerLibrary
 			{
 				_connectedUser = value;
 			}
+		}
+
+		public static void logoutUser()
+		{
+			if (_connectedUser == null) 
+			{
+				throw new Exception("not_authenticated");
+			}
+			_connectedUser = null;
+		}
+
+		public static bool IsUserAuthenticated() 
+		{
+			return _connectedUser != null;
 		}
 	}
 }

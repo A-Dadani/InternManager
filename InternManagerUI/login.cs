@@ -13,6 +13,30 @@ namespace InternManagerUI
 			DoubleBuffered = true;
 		}
 
+		private void login_Shown(object sender, EventArgs e)
+		{
+			backroundSmallPanel.Focus();
+		}
+
+		private void Reset()
+		{
+			//Reset email field
+			emailMaskedTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#646c77");
+			emailMaskedTextBox.Text = "Adresse E-mail";
+
+			//Reset password field
+			passwordMaskedTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#646c77");
+			passwordMaskedTextBox.PasswordChar = '\0';
+			passwordMaskedTextBox.Text = "Mot de passe";
+
+			//Reset cursor
+			Cursor = Cursors.Default;
+
+			//Reset warnings
+			credentialsWarnLabel.Hide();
+			emailWarnLabel.Hide();
+		}
+
 		private void emailMaskedTextBox_Enter(object sender, EventArgs e)
 		{
 			if (emailMaskedTextBox.Text == "Adresse E-mail")
@@ -51,11 +75,6 @@ namespace InternManagerUI
 			}
 		}
 
-		private void login_Shown(object sender, EventArgs e)
-		{
-			backroundSmallPanel.Focus();
-		}
-
 		private void signInButton_Click(object sender, EventArgs e)
 		{
 			emailWarnLabel.Hide();
@@ -91,11 +110,20 @@ namespace InternManagerUI
 			}
 
 			var layoutForm = new layoutFrm();
+			AddOwnedForm(layoutForm);
 			layoutForm.Location = Location;
 			layoutForm.StartPosition = FormStartPosition.Manual;
-			layoutForm.FormClosing += delegate { Close(); };
+			layoutForm.FormClosed += (sender, e) => {
+				// User initiated closing is handled inside of the layoutFrm class (possibility of logout)
+				// If reason is owner closing we don't need to do anything
+				if (e.CloseReason != CloseReason.UserClosing && e.CloseReason != CloseReason.FormOwnerClosing)
+				{
+					Close();
+				}
+			};
 			layoutForm.Show();
 			Hide();
+			Reset();
 		}
 	}
 }

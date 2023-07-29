@@ -29,41 +29,65 @@
 		private void InitializeComponent()
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(layoutFrm));
-			panel1 = new Panel();
-			greetingsLabel = new Label();
+			sideNavBar = new Panel();
+			logoutPanel = new Panel();
+			logoutLabel = new Label();
+			logoutIcon = new PictureBox();
 			logoPictureBox = new PictureBox();
-			panel1.SuspendLayout();
+			sideNavBar.SuspendLayout();
+			logoutPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)logoutIcon).BeginInit();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
 			SuspendLayout();
 			// 
-			// panel1
+			// sideNavBar
 			// 
-			panel1.BackColor = Color.FromArgb(13, 13, 13);
-			panel1.Controls.Add(greetingsLabel);
-			panel1.Controls.Add(logoPictureBox);
-			panel1.Dock = DockStyle.Top;
-			panel1.Location = new Point(0, 0);
-			panel1.Name = "panel1";
-			panel1.Size = new Size(1264, 70);
-			panel1.TabIndex = 0;
+			sideNavBar.BackColor = Color.FromArgb(13, 13, 13);
+			sideNavBar.Controls.Add(logoutPanel);
+			sideNavBar.Controls.Add(logoPictureBox);
+			sideNavBar.Dock = DockStyle.Left;
+			sideNavBar.Location = new Point(0, 0);
+			sideNavBar.Name = "sideNavBar";
+			sideNavBar.Size = new Size(290, 681);
+			sideNavBar.TabIndex = 0;
 			// 
-			// greetingsLabel
+			// logoutPanel
 			// 
-			greetingsLabel.AutoSize = true;
-			greetingsLabel.BackColor = Color.Transparent;
-			greetingsLabel.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point);
-			greetingsLabel.ForeColor = Color.White;
-			greetingsLabel.Location = new Point(259, 15);
-			greetingsLabel.Name = "greetingsLabel";
-			greetingsLabel.Size = new Size(117, 40);
-			greetingsLabel.TabIndex = 1;
-			greetingsLabel.Text = "Bonjour";
+			logoutPanel.BackColor = Color.FromArgb(232, 86, 63);
+			logoutPanel.Controls.Add(logoutLabel);
+			logoutPanel.Controls.Add(logoutIcon);
+			logoutPanel.Location = new Point(23, 620);
+			logoutPanel.Name = "logoutPanel";
+			logoutPanel.Size = new Size(242, 49);
+			logoutPanel.TabIndex = 1;
+			logoutPanel.Click += logoutPanel_Click;
+			// 
+			// logoutLabel
+			// 
+			logoutLabel.AutoSize = true;
+			logoutLabel.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+			logoutLabel.ForeColor = Color.White;
+			logoutLabel.Location = new Point(58, 8);
+			logoutLabel.Name = "logoutLabel";
+			logoutLabel.Size = new Size(160, 30);
+			logoutLabel.TabIndex = 1;
+			logoutLabel.Text = "Se déconnecter";
+			// 
+			// logoutIcon
+			// 
+			logoutIcon.BackgroundImage = Properties.Resources.logout_white;
+			logoutIcon.BackgroundImageLayout = ImageLayout.Stretch;
+			logoutIcon.Location = new Point(21, 9);
+			logoutIcon.Name = "logoutIcon";
+			logoutIcon.Size = new Size(30, 30);
+			logoutIcon.TabIndex = 0;
+			logoutIcon.TabStop = false;
 			// 
 			// logoPictureBox
 			// 
 			logoPictureBox.BackgroundImage = Properties.Resources.logo_white;
 			logoPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-			logoPictureBox.Location = new Point(8, 7);
+			logoPictureBox.Location = new Point(59, 27);
 			logoPictureBox.Name = "logoPictureBox";
 			logoPictureBox.Size = new Size(172, 56);
 			logoPictureBox.TabIndex = 0;
@@ -75,23 +99,28 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.FromArgb(244, 246, 249);
 			ClientSize = new Size(1264, 681);
-			Controls.Add(panel1);
+			Controls.Add(sideNavBar);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			MaximizeBox = false;
 			Name = "layoutFrm";
 			Text = "Tableau de bord • OCP";
+			FormClosed += layoutFrm_FormClosed;
 			Load += layoutFrm_Load;
-			panel1.ResumeLayout(false);
-			panel1.PerformLayout();
+			sideNavBar.ResumeLayout(false);
+			logoutPanel.ResumeLayout(false);
+			logoutPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)logoutIcon).EndInit();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
 			ResumeLayout(false);
 		}
 
 		#endregion
 
-		private Panel panel1;
+		private Panel sideNavBar;
 		private PictureBox logoPictureBox;
-		private Label greetingsLabel;
+		private Panel logoutPanel;
+		private PictureBox logoutIcon;
+		private Label logoutLabel;
 	}
 }
