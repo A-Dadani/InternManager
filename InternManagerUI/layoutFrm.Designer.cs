@@ -47,6 +47,7 @@
 			logoPictureBox = new PictureBox();
 			titleBarPanel = new Panel();
 			titleLabel = new Label();
+			contentPlaceholder = new Panel();
 			sideNavBar.SuspendLayout();
 			signupRequestsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)signupRequestsPictureBox).BeginInit();
@@ -261,12 +262,20 @@
 			titleLabel.TabIndex = 0;
 			titleLabel.Text = "Tableau de Bord";
 			// 
+			// contentPlaceholder
+			// 
+			contentPlaceholder.Location = new Point(316, 83);
+			contentPlaceholder.Name = "contentPlaceholder";
+			contentPlaceholder.Size = new Size(949, 598);
+			contentPlaceholder.TabIndex = 2;
+			// 
 			// layoutFrm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.FromArgb(244, 246, 249);
 			ClientSize = new Size(1264, 681);
+			Controls.Add(contentPlaceholder);
 			Controls.Add(titleBarPanel);
 			Controls.Add(sideNavBar);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -315,5 +324,6 @@
 		private Label signupRequestsLabel;
 		private Panel titleBarPanel;
 		private Label titleLabel;
+		private Panel contentPlaceholder;
 	}
 }
