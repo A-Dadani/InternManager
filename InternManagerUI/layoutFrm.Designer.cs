@@ -30,11 +30,28 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(layoutFrm));
 			sideNavBar = new Panel();
+			signupRequestsPanel = new Panel();
+			signupRequestsPictureBox = new PictureBox();
+			signupRequestsLabel = new Label();
+			manageInternsPanel = new Panel();
+			manageInternsPictureBox = new PictureBox();
+			manageInternsLabel = new Label();
+			navigationSelectorPanel = new Panel();
+			dashboardPanel = new Panel();
+			dashboardLogoPictureBox = new PictureBox();
+			dashboardLabel = new Label();
+			horizontalSeparator = new Panel();
 			logoutPanel = new Panel();
 			logoutLabel = new Label();
 			logoutIcon = new PictureBox();
 			logoPictureBox = new PictureBox();
 			sideNavBar.SuspendLayout();
+			signupRequestsPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)signupRequestsPictureBox).BeginInit();
+			manageInternsPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)manageInternsPictureBox).BeginInit();
+			dashboardPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)dashboardLogoPictureBox).BeginInit();
 			logoutPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)logoutIcon).BeginInit();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
@@ -43,20 +60,147 @@
 			// sideNavBar
 			// 
 			sideNavBar.BackColor = Color.FromArgb(13, 13, 13);
+			sideNavBar.Controls.Add(signupRequestsPanel);
+			sideNavBar.Controls.Add(manageInternsPanel);
+			sideNavBar.Controls.Add(navigationSelectorPanel);
+			sideNavBar.Controls.Add(dashboardPanel);
+			sideNavBar.Controls.Add(horizontalSeparator);
 			sideNavBar.Controls.Add(logoutPanel);
 			sideNavBar.Controls.Add(logoPictureBox);
 			sideNavBar.Dock = DockStyle.Left;
 			sideNavBar.Location = new Point(0, 0);
 			sideNavBar.Name = "sideNavBar";
-			sideNavBar.Size = new Size(290, 681);
+			sideNavBar.Size = new Size(316, 681);
 			sideNavBar.TabIndex = 0;
+			// 
+			// signupRequestsPanel
+			// 
+			signupRequestsPanel.Controls.Add(signupRequestsPictureBox);
+			signupRequestsPanel.Controls.Add(signupRequestsLabel);
+			signupRequestsPanel.Location = new Point(0, 266);
+			signupRequestsPanel.Name = "signupRequestsPanel";
+			signupRequestsPanel.Size = new Size(316, 56);
+			signupRequestsPanel.TabIndex = 7;
+			signupRequestsPanel.Click += signupRequestsPanel_Click;
+			signupRequestsPanel.MouseEnter += signupRequestsPanel_MouseEnter;
+			signupRequestsPanel.MouseLeave += signupRequestsPanel_MouseLeave;
+			// 
+			// signupRequestsPictureBox
+			// 
+			signupRequestsPictureBox.BackColor = Color.Transparent;
+			signupRequestsPictureBox.BackgroundImage = Properties.Resources.user_gear_white;
+			signupRequestsPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			signupRequestsPictureBox.Location = new Point(31, 15);
+			signupRequestsPictureBox.Name = "signupRequestsPictureBox";
+			signupRequestsPictureBox.Size = new Size(25, 25);
+			signupRequestsPictureBox.TabIndex = 1;
+			signupRequestsPictureBox.TabStop = false;
+			// 
+			// signupRequestsLabel
+			// 
+			signupRequestsLabel.AutoSize = true;
+			signupRequestsLabel.BackColor = Color.Transparent;
+			signupRequestsLabel.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+			signupRequestsLabel.ForeColor = Color.White;
+			signupRequestsLabel.Location = new Point(64, 12);
+			signupRequestsLabel.Name = "signupRequestsLabel";
+			signupRequestsLabel.Size = new Size(238, 30);
+			signupRequestsLabel.TabIndex = 0;
+			signupRequestsLabel.Text = "Demandes d'inscription";
+			// 
+			// manageInternsPanel
+			// 
+			manageInternsPanel.Controls.Add(manageInternsPictureBox);
+			manageInternsPanel.Controls.Add(manageInternsLabel);
+			manageInternsPanel.Location = new Point(0, 196);
+			manageInternsPanel.Name = "manageInternsPanel";
+			manageInternsPanel.Size = new Size(316, 56);
+			manageInternsPanel.TabIndex = 6;
+			manageInternsPanel.Click += manageInternsPanel_Click;
+			manageInternsPanel.MouseEnter += manageInternsPanel_MouseEnter;
+			manageInternsPanel.MouseLeave += manageInternsPanel_MouseLeave;
+			// 
+			// manageInternsPictureBox
+			// 
+			manageInternsPictureBox.BackColor = Color.Transparent;
+			manageInternsPictureBox.BackgroundImage = Properties.Resources.users;
+			manageInternsPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			manageInternsPictureBox.Location = new Point(31, 15);
+			manageInternsPictureBox.Name = "manageInternsPictureBox";
+			manageInternsPictureBox.Size = new Size(25, 25);
+			manageInternsPictureBox.TabIndex = 1;
+			manageInternsPictureBox.TabStop = false;
+			// 
+			// manageInternsLabel
+			// 
+			manageInternsLabel.AutoSize = true;
+			manageInternsLabel.BackColor = Color.Transparent;
+			manageInternsLabel.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+			manageInternsLabel.ForeColor = Color.White;
+			manageInternsLabel.Location = new Point(64, 12);
+			manageInternsLabel.Name = "manageInternsLabel";
+			manageInternsLabel.Size = new Size(212, 30);
+			manageInternsLabel.TabIndex = 0;
+			manageInternsLabel.Text = "Gestion de stagiaires";
+			// 
+			// navigationSelectorPanel
+			// 
+			navigationSelectorPanel.BackColor = Color.FromArgb(138, 192, 84);
+			navigationSelectorPanel.Location = new Point(0, 0);
+			navigationSelectorPanel.Name = "navigationSelectorPanel";
+			navigationSelectorPanel.Size = new Size(5, 56);
+			navigationSelectorPanel.TabIndex = 2;
+			// 
+			// dashboardPanel
+			// 
+			dashboardPanel.Controls.Add(dashboardLogoPictureBox);
+			dashboardPanel.Controls.Add(dashboardLabel);
+			dashboardPanel.Location = new Point(0, 126);
+			dashboardPanel.Name = "dashboardPanel";
+			dashboardPanel.Size = new Size(316, 56);
+			dashboardPanel.TabIndex = 5;
+			dashboardPanel.Click += dashboardPanel_Click;
+			dashboardPanel.MouseEnter += dashboardPanel_MouseEnter;
+			dashboardPanel.MouseLeave += dashboardPanel_MouseLeave;
+			// 
+			// dashboardLogoPictureBox
+			// 
+			dashboardLogoPictureBox.BackColor = Color.Transparent;
+			dashboardLogoPictureBox.BackgroundImage = Properties.Resources.dashboard_white1;
+			dashboardLogoPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			dashboardLogoPictureBox.Location = new Point(30, 15);
+			dashboardLogoPictureBox.Name = "dashboardLogoPictureBox";
+			dashboardLogoPictureBox.Size = new Size(25, 25);
+			dashboardLogoPictureBox.TabIndex = 1;
+			dashboardLogoPictureBox.TabStop = false;
+			// 
+			// dashboardLabel
+			// 
+			dashboardLabel.AutoSize = true;
+			dashboardLabel.BackColor = Color.Transparent;
+			dashboardLabel.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+			dashboardLabel.ForeColor = Color.White;
+			dashboardLabel.Location = new Point(64, 12);
+			dashboardLabel.Name = "dashboardLabel";
+			dashboardLabel.Size = new Size(169, 30);
+			dashboardLabel.TabIndex = 0;
+			dashboardLabel.Text = "Tableau de bord";
+			// 
+			// horizontalSeparator
+			// 
+			horizontalSeparator.BackColor = Color.FromArgb(37, 37, 37);
+			horizontalSeparator.ForeColor = Color.Transparent;
+			horizontalSeparator.Location = new Point(0, 109);
+			horizontalSeparator.Name = "horizontalSeparator";
+			horizontalSeparator.Size = new Size(316, 3);
+			horizontalSeparator.TabIndex = 2;
 			// 
 			// logoutPanel
 			// 
 			logoutPanel.BackColor = Color.FromArgb(232, 86, 63);
 			logoutPanel.Controls.Add(logoutLabel);
 			logoutPanel.Controls.Add(logoutIcon);
-			logoutPanel.Location = new Point(23, 620);
+			logoutPanel.Location = new Point(37, 620);
 			logoutPanel.Name = "logoutPanel";
 			logoutPanel.Size = new Size(242, 49);
 			logoutPanel.TabIndex = 1;
@@ -89,7 +233,7 @@
 			// 
 			logoPictureBox.BackgroundImage = Properties.Resources.logo_white;
 			logoPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-			logoPictureBox.Location = new Point(59, 27);
+			logoPictureBox.Location = new Point(72, 27);
 			logoPictureBox.Name = "logoPictureBox";
 			logoPictureBox.Size = new Size(172, 56);
 			logoPictureBox.TabIndex = 0;
@@ -110,6 +254,15 @@
 			FormClosed += layoutFrm_FormClosed;
 			Load += layoutFrm_Load;
 			sideNavBar.ResumeLayout(false);
+			signupRequestsPanel.ResumeLayout(false);
+			signupRequestsPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)signupRequestsPictureBox).EndInit();
+			manageInternsPanel.ResumeLayout(false);
+			manageInternsPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)manageInternsPictureBox).EndInit();
+			dashboardPanel.ResumeLayout(false);
+			dashboardPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)dashboardLogoPictureBox).EndInit();
 			logoutPanel.ResumeLayout(false);
 			logoutPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)logoutIcon).EndInit();
@@ -124,5 +277,16 @@
 		private Panel logoutPanel;
 		private PictureBox logoutIcon;
 		private Label logoutLabel;
+		private Panel horizontalSeparator;
+		private Panel dashboardPanel;
+		private Label dashboardLabel;
+		private PictureBox dashboardLogoPictureBox;
+		private Panel navigationSelectorPanel;
+		private Panel manageInternsPanel;
+		private PictureBox manageInternsPictureBox;
+		private Label manageInternsLabel;
+		private Panel signupRequestsPanel;
+		private PictureBox signupRequestsPictureBox;
+		private Label signupRequestsLabel;
 	}
 }

@@ -17,86 +17,37 @@ namespace InternManagerUI
 		public layoutFrm()
 		{
 			InitializeComponent();
+
+			//Check if user is authentificated
 			if (!GlobalConfig.IsUserAuthenticated())
 			{
 				MessageBox.Show("Vous n'êtes pas connectés", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				// Kill process if not signed in
 				Environment.Exit(0);
 			}
-			BubbleClick(logoutPanel, logoutPanel_Click);
-			BubbleHover(logoutPanel, logoutPanel_MouseEnter, logoutPanel_MouseLeave);
+
+			//Bubble the click and hover events to parent panels to simulate buttons
+			Helpers.BubbleClick(logoutPanel, logoutPanel_Click);
+			Helpers.BubbleHover(logoutPanel, logoutPanel_MouseEnter, logoutPanel_MouseLeave);
+			Helpers.BubbleClick(dashboardPanel, dashboardPanel_Click);
+			Helpers.BubbleHover(dashboardPanel, dashboardPanel_MouseEnter, dashboardPanel_MouseLeave);
+			Helpers.BubbleClick(manageInternsPanel, manageInternsPanel_Click);
+			Helpers.BubbleHover(manageInternsPanel, manageInternsPanel_MouseEnter, manageInternsPanel_MouseLeave);
+			Helpers.BubbleClick(signupRequestsPanel, signupRequestsPanel_Click);
+			Helpers.BubbleHover(signupRequestsPanel, signupRequestsPanel_MouseEnter, signupRequestsPanel_MouseLeave);
+
+			//Set the navigation selector to the correct position and bring it to front
+			navigationSelectorPanel.Height = dashboardPanel.Height;
+			navigationSelectorPanel.Top = dashboardPanel.Top;
+			navigationSelectorPanel.Left = dashboardPanel.Left;
+			navigationSelectorPanel.BringToFront();
+
 			isLoggedOut = false;
-		}
-
-		/// <summary>
-		/// Bubble the click event to the parent (works on only 1 generation)
-		/// </summary>
-		/// <param name="parent">The parent panel</param>
-		/// <param name="clickBehavior">Function that dictates the behavior - often the Click beavior of the parent</param>
-		private void BubbleClick(Panel parent, EventHandler clickBehavior)
-		{
-			foreach (Control child in parent.Controls)
-			{
-				child.MouseClick += new MouseEventHandler(clickBehavior);
-			}
-		}
-
-		/// <summary>
-		/// Bubble the Hover event to the parent (works on only 1 generation)
-		/// </summary>
-		/// <param name="parent">The parent panel</param>
-		/// <param name="mouseEnterBehavior">Function that dictates the behavior - often the MouseEnter behavior of the parent</param>
-		/// <param name="mouseLeaveBehavior">Function that dictates the behavior - often the MouseLeave behavior of the parent</param>
-		private void BubbleHover(Panel parent, EventHandler mouseEnterBehavior, EventHandler mouseLeaveBehavior) 
-		{
-			foreach (Control child in parent.Controls)
-			{
-				child.MouseEnter += new EventHandler(mouseEnterBehavior);
-				child.MouseLeave += new EventHandler(mouseLeaveBehavior);
-			}
-		}
-
-		/// <summary>
-		/// Darkens and rebrightens color
-		/// </summary>
-		/// <param name="color">Color to correct.</param>
-		/// <param name="correctionFactor">The brightness correction factor. Must be between -1 and 1. 
-		/// Negative values produce darker colors.</param>
-		/// <returns>
-		/// Corrected <see cref="Color"/> structure.
-		/// </returns>
-		public static Color DarkenRebrighten(Color color, float correctionFactor)
-		{
-			float red = (float)color.R;
-			float green = (float)color.G;
-			float blue = (float)color.B;
-
-			if (correctionFactor < 0)
-			{
-				correctionFactor = 1 + correctionFactor;
-				red *= correctionFactor;
-				green *= correctionFactor;
-				blue *= correctionFactor;
-			}
-			else
-			{
-				red /= (1 - correctionFactor);
-				green /= (1 - correctionFactor);
-				blue /= (1 - correctionFactor);
-			}
-
-			return Color.FromArgb(color.A, (int)red, (int)green, (int)blue);
 		}
 
 		private void layoutFrm_Load(object sender, EventArgs e)
 		{
 
-		}
-
-		private void logoutPanel_Click(object? sender, EventArgs e)
-		{
-			isLoggedOut = true;
-			Close();
 		}
 
 		private void layoutFrm_FormClosed(object sender, FormClosedEventArgs e)
@@ -115,14 +66,76 @@ namespace InternManagerUI
 			}
 		}
 
+		// Logout Panel
 		private void logoutPanel_MouseEnter(object? sender, EventArgs e)
 		{
-			logoutPanel.BackColor = DarkenRebrighten(logoutPanel.BackColor, -0.25f);
+			logoutPanel.BackColor = Helpers.DarkenRebrighten(logoutPanel.BackColor, -0.25f);
 		}
 
 		private void logoutPanel_MouseLeave(object? sender, EventArgs e)
 		{
-			logoutPanel.BackColor = DarkenRebrighten(logoutPanel.BackColor, 0.25f);
+			logoutPanel.BackColor = Helpers.DarkenRebrighten(logoutPanel.BackColor, 0.25f);
+		}
+
+		private void logoutPanel_Click(object? sender, EventArgs e)
+		{
+			isLoggedOut = true;
+			Close();
+		}
+
+		//Dashboard Panel
+		private void dashboardPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			dashboardPanel.BackColor = Helpers.BrightenRedarken(dashboardPanel.BackColor, 3.0f);
+		}
+
+		private void dashboardPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			dashboardPanel.BackColor = Helpers.BrightenRedarken(dashboardPanel.BackColor, -3.0f);
+		}
+
+		private void dashboardPanel_Click(object? sender, EventArgs e)
+		{
+			//Set the navigation selector to the correct position
+			navigationSelectorPanel.Height = dashboardPanel.Height;
+			navigationSelectorPanel.Top = dashboardPanel.Top;
+			navigationSelectorPanel.Left = dashboardPanel.Left;
+		}
+
+		//Manage Interns Panel
+		private void manageInternsPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			manageInternsPanel.BackColor = Helpers.BrightenRedarken(manageInternsPanel.BackColor, 3.0f);
+		}
+
+		private void manageInternsPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			manageInternsPanel.BackColor = Helpers.BrightenRedarken(manageInternsPanel.BackColor, -3.0f);
+		}
+		private void manageInternsPanel_Click(object? sender, EventArgs e)
+		{
+			//Set the navigation selector to the correct position
+			navigationSelectorPanel.Height = manageInternsPanel.Height;
+			navigationSelectorPanel.Top = manageInternsPanel.Top;
+			navigationSelectorPanel.Left = manageInternsPanel.Left;
+		}
+
+		private void signupRequestsPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			signupRequestsPanel.BackColor = Helpers.BrightenRedarken(signupRequestsPanel.BackColor, 3.0f);
+		}
+
+		private void signupRequestsPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			signupRequestsPanel.BackColor = Helpers.BrightenRedarken(signupRequestsPanel.BackColor, -3.0f);
+		}
+
+		private void signupRequestsPanel_Click(object? sender, EventArgs e)
+		{
+			//Set the navigation selector to the correct position
+			navigationSelectorPanel.Height = signupRequestsPanel.Height;
+			navigationSelectorPanel.Top = signupRequestsPanel.Top;
+			navigationSelectorPanel.Left = signupRequestsPanel.Left;
 		}
 	}
 }
