@@ -42,6 +42,10 @@ namespace InternManagerUI
 			navigationSelectorPanel.Left = dashboardPanel.Left;
 			navigationSelectorPanel.BringToFront();
 
+			//Set the title
+			titleLabel.Text = dashboardLabel.Text;
+
+			//Set members
 			isLoggedOut = false;
 		}
 
@@ -100,6 +104,9 @@ namespace InternManagerUI
 			navigationSelectorPanel.Height = dashboardPanel.Height;
 			navigationSelectorPanel.Top = dashboardPanel.Top;
 			navigationSelectorPanel.Left = dashboardPanel.Left;
+
+			//Set title
+			titleLabel.Text = dashboardLabel.Text;
 		}
 
 		//Manage Interns Panel
@@ -118,6 +125,9 @@ namespace InternManagerUI
 			navigationSelectorPanel.Height = manageInternsPanel.Height;
 			navigationSelectorPanel.Top = manageInternsPanel.Top;
 			navigationSelectorPanel.Left = manageInternsPanel.Left;
+
+			//Set title
+			titleLabel.Text = manageInternsLabel.Text;
 		}
 
 		private void signupRequestsPanel_MouseEnter(object? sender, EventArgs e)
@@ -136,6 +146,9 @@ namespace InternManagerUI
 			navigationSelectorPanel.Height = signupRequestsPanel.Height;
 			navigationSelectorPanel.Top = signupRequestsPanel.Top;
 			navigationSelectorPanel.Left = signupRequestsPanel.Left;
+
+			//Set title
+			titleLabel.Text = signupRequestsLabel.Text;
 		}
 	}
 }
