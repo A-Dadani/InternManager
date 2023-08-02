@@ -99,5 +99,109 @@ namespace InternManagerLibrary
 
 			return new AdminModel(Id, fullName, email);
 		}
+
+		public int GetAdminCount()
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `admins`";
+			MySqlCommand countSelectionCommand = new MySqlCommand(countSelectionQuery, connection);
+			connection.Open();
+			MySqlDataReader countreader = countSelectionCommand.ExecuteReader();
+			if (countreader.Read()) 
+			{
+				int count = countreader.GetInt32("count");
+				connection.Close();
+				return count;
+			}
+            else
+            {
+				connection.Close();
+                 throw new Exception("unknown_error");
+            }
+		}
+
+		public int GetPFACount()
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `interns` WHERE `internship_type` = 'PFA'";
+			MySqlCommand countSelectionCommand = new MySqlCommand(countSelectionQuery, connection);
+			connection.Open();
+			MySqlDataReader countreader = countSelectionCommand.ExecuteReader();
+			if (countreader.Read())
+			{
+				int count = countreader.GetInt32("count");
+				connection.Close();
+				return count;
+			}
+			else
+			{
+				connection.Close();
+				throw new Exception("unknown_error");
+			}
+		}
+
+		public int GetPFECount()
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `interns` WHERE `internship_type` = 'PFE'";
+			MySqlCommand countSelectionCommand = new MySqlCommand(countSelectionQuery, connection);
+			connection.Open();
+			MySqlDataReader countreader = countSelectionCommand.ExecuteReader();
+			if (countreader.Read())
+			{
+				int count = countreader.GetInt32("count");
+				connection.Close();
+				return count;
+			}
+			else
+			{
+				connection.Close();
+				throw new Exception("unknown_error");
+			}
+		}
+
+		public int GetObservationCount()
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `interns` WHERE `internship_type` = 'Observation'";
+			MySqlCommand countSelectionCommand = new MySqlCommand(countSelectionQuery, connection);
+			connection.Open();
+			MySqlDataReader countreader = countSelectionCommand.ExecuteReader();
+			if (countreader.Read())
+			{
+				int count = countreader.GetInt32("count");
+				connection.Close();
+				return count;
+			}
+			else
+			{
+				connection.Close();
+				throw new Exception("unknown_error");
+			}
+		}
 	}
 }

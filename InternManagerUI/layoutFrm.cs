@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InternManagerLibrary;
+using InternManagerUI.Partials;
 
 namespace InternManagerUI
 {
@@ -36,14 +37,24 @@ namespace InternManagerUI
 			Helpers.BubbleClick(signupRequestsPanel, signupRequestsPanel_Click);
 			Helpers.BubbleHover(signupRequestsPanel, signupRequestsPanel_MouseEnter, signupRequestsPanel_MouseLeave);
 
-			//Set the navigation selector to the correct position and bring it to front
+			//Set the navigation selector to the correct position
 			navigationSelectorPanel.Height = dashboardPanel.Height;
 			navigationSelectorPanel.Top = dashboardPanel.Top;
 			navigationSelectorPanel.Left = dashboardPanel.Left;
 			navigationSelectorPanel.BringToFront();
 
-			//Set the title
+			//Set titles
 			titleLabel.Text = dashboardLabel.Text;
+			this.Text = dashboardLabel.Text + " • OCP";
+
+			//Load the content (partial)
+			Cursor = Cursors.WaitCursor;
+			contentPlaceholderPanel.Controls.Clear();
+			dashboardFrm dashboardFrmInst = new dashboardFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			dashboardFrmInst.FormBorderStyle = FormBorderStyle.None;
+			contentPlaceholderPanel.Controls.Add(dashboardFrmInst);
+			dashboardFrmInst.Show();
+			Cursor = Cursors.Default;
 
 			//Set members
 			isLoggedOut = false;
@@ -98,15 +109,26 @@ namespace InternManagerUI
 			dashboardPanel.BackColor = Helpers.BrightenRedarken(dashboardPanel.BackColor, -3.0f);
 		}
 
-		private void dashboardPanel_Click(object? sender, EventArgs e)
+		private void dashboardPanel_Click(object? sender, EventArgs? e)
 		{
 			//Set the navigation selector to the correct position
 			navigationSelectorPanel.Height = dashboardPanel.Height;
 			navigationSelectorPanel.Top = dashboardPanel.Top;
 			navigationSelectorPanel.Left = dashboardPanel.Left;
+			navigationSelectorPanel.BringToFront();
 
-			//Set title
+			//Set titles
 			titleLabel.Text = dashboardLabel.Text;
+			this.Text = dashboardLabel.Text + " • OCP";
+
+			//Load the content (partial)
+			Cursor = Cursors.WaitCursor;
+			contentPlaceholderPanel.Controls.Clear();
+			dashboardFrm dashboardFrmInst = new dashboardFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			dashboardFrmInst.FormBorderStyle = FormBorderStyle.None;
+			contentPlaceholderPanel.Controls.Add(dashboardFrmInst);
+			dashboardFrmInst.Show();
+			Cursor = Cursors.Default;
 		}
 
 		//Manage Interns Panel
@@ -125,9 +147,20 @@ namespace InternManagerUI
 			navigationSelectorPanel.Height = manageInternsPanel.Height;
 			navigationSelectorPanel.Top = manageInternsPanel.Top;
 			navigationSelectorPanel.Left = manageInternsPanel.Left;
+			navigationSelectorPanel.BringToFront();
 
-			//Set title
+			//Set titles
 			titleLabel.Text = manageInternsLabel.Text;
+			this.Text = manageInternsLabel.Text + " • OCP";
+
+			//Load the content (partial)
+			Cursor = Cursors.WaitCursor;
+			contentPlaceholderPanel.Controls.Clear();
+			manageInternsFrm manageInternsFrmInst = new manageInternsFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			manageInternsFrmInst.FormBorderStyle = FormBorderStyle.None;
+			contentPlaceholderPanel.Controls.Add(manageInternsFrmInst);
+			manageInternsFrmInst.Show();
+			Cursor = Cursors.Default;
 		}
 
 		private void signupRequestsPanel_MouseEnter(object? sender, EventArgs e)
@@ -146,9 +179,20 @@ namespace InternManagerUI
 			navigationSelectorPanel.Height = signupRequestsPanel.Height;
 			navigationSelectorPanel.Top = signupRequestsPanel.Top;
 			navigationSelectorPanel.Left = signupRequestsPanel.Left;
+			navigationSelectorPanel.BringToFront();
 
-			//Set title
+			//Set titles
 			titleLabel.Text = signupRequestsLabel.Text;
+			this.Text = signupRequestsLabel.Text + " • OCP";
+
+			//Load the content (partial)
+			Cursor = Cursors.WaitCursor;
+			contentPlaceholderPanel.Controls.Clear();
+			signupRequestsFrm signupRequestsFrmInst = new signupRequestsFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			signupRequestsFrmInst.FormBorderStyle = FormBorderStyle.None;
+			contentPlaceholderPanel.Controls.Add(signupRequestsFrmInst);
+			signupRequestsFrmInst.Show();
+			Cursor = Cursors.Default;
 		}
 	}
 }

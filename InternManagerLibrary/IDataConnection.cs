@@ -9,5 +9,9 @@ namespace InternManagerLibrary
 	public interface IDataConnection
 	{
 		AdminModel Authenticate(string  email, string password);
+		int GetAdminCount();
+		int GetPFACount();
+		int GetPFECount();
+		int GetObservationCount();
 	}
 }

@@ -63,6 +63,16 @@ namespace InternManagerUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _2023_05_10_20_55_35_vivaldi_webui_667643a4a670 {
+            get {
+                object obj = ResourceManager.GetObject("2023-05-10 20.55.35 vivaldi-webui 667643a4a670", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dashboard_white {
             get {
                 object obj = ResourceManager.GetObject("dashboard_white", resourceCulture);
@@ -126,6 +136,16 @@ namespace InternManagerUI.Properties {
         internal static System.Drawing.Bitmap logout1 {
             get {
                 object obj = ResourceManager.GetObject("logout1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_add {
+            get {
+                object obj = ResourceManager.GetObject("user_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

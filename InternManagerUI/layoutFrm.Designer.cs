@@ -47,7 +47,7 @@
 			logoPictureBox = new PictureBox();
 			titleBarPanel = new Panel();
 			titleLabel = new Label();
-			contentPlaceholder = new Panel();
+			contentPlaceholderPanel = new Panel();
 			sideNavBar.SuspendLayout();
 			signupRequestsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)signupRequestsPictureBox).BeginInit();
@@ -92,11 +92,11 @@
 			// signupRequestsPictureBox
 			// 
 			signupRequestsPictureBox.BackColor = Color.Transparent;
-			signupRequestsPictureBox.BackgroundImage = Properties.Resources.user_gear_white;
+			signupRequestsPictureBox.BackgroundImage = Properties.Resources.user_add;
 			signupRequestsPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-			signupRequestsPictureBox.Location = new Point(31, 15);
+			signupRequestsPictureBox.Location = new Point(29, 16);
 			signupRequestsPictureBox.Name = "signupRequestsPictureBox";
-			signupRequestsPictureBox.Size = new Size(25, 25);
+			signupRequestsPictureBox.Size = new Size(27, 22);
 			signupRequestsPictureBox.TabIndex = 1;
 			signupRequestsPictureBox.TabStop = false;
 			// 
@@ -129,9 +129,9 @@
 			manageInternsPictureBox.BackColor = Color.Transparent;
 			manageInternsPictureBox.BackgroundImage = Properties.Resources.users;
 			manageInternsPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
-			manageInternsPictureBox.Location = new Point(31, 15);
+			manageInternsPictureBox.Location = new Point(29, 16);
 			manageInternsPictureBox.Name = "manageInternsPictureBox";
-			manageInternsPictureBox.Size = new Size(25, 25);
+			manageInternsPictureBox.Size = new Size(27, 22);
 			manageInternsPictureBox.TabIndex = 1;
 			manageInternsPictureBox.TabStop = false;
 			// 
@@ -262,12 +262,12 @@
 			titleLabel.TabIndex = 0;
 			titleLabel.Text = "Tableau de Bord";
 			// 
-			// contentPlaceholder
+			// contentPlaceholderPanel
 			// 
-			contentPlaceholder.Location = new Point(316, 83);
-			contentPlaceholder.Name = "contentPlaceholder";
-			contentPlaceholder.Size = new Size(949, 598);
-			contentPlaceholder.TabIndex = 2;
+			contentPlaceholderPanel.Location = new Point(316, 83);
+			contentPlaceholderPanel.Name = "contentPlaceholderPanel";
+			contentPlaceholderPanel.Size = new Size(949, 598);
+			contentPlaceholderPanel.TabIndex = 2;
 			// 
 			// layoutFrm
 			// 
@@ -275,7 +275,7 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.FromArgb(244, 246, 249);
 			ClientSize = new Size(1264, 681);
-			Controls.Add(contentPlaceholder);
+			Controls.Add(contentPlaceholderPanel);
 			Controls.Add(titleBarPanel);
 			Controls.Add(sideNavBar);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -324,6 +324,6 @@
 		private Label signupRequestsLabel;
 		private Panel titleBarPanel;
 		private Label titleLabel;
-		private Panel contentPlaceholder;
+		private Panel contentPlaceholderPanel;
 	}
 }
