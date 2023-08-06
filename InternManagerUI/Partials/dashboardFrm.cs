@@ -37,10 +37,5 @@ namespace InternManagerUI.Partials
 			obsCountLabel.Text = obsCount.ToString();
 			adminCountLabel.Text = adminCount.ToString();
 		}
-
-		private void label1_Click(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
