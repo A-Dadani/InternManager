@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using InternManagerLibrary;
-using System.Drawing.Drawing2D;
+using System.Globalization;
 
 namespace InternManagerUI.Partials
 {
@@ -72,15 +72,45 @@ namespace InternManagerUI.Partials
 				internsTable.Controls.Add(hdrLabel, c, 0);
 			}
 
-			for (int c = 0; c < columns.Length; ++c)
+			for (int i = 0; i < internCount; ++i)
 			{
-				for (int r = 1; r <= internCount; ++r)
+				string anneeEtudeStr;
+				switch (interns[i].studyYear)
+				{
+					case 1:
+						anneeEtudeStr = "1ère année"; break;
+					case 2:
+						anneeEtudeStr = "2ème année"; break;
+					default:
+						anneeEtudeStr = interns[i].studyYear.ToString() + "ème année"; break;
+				}
+				string[] content = { 
+					interns[i].lastName.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(interns[i].firstName.ToLower()), 
+					interns[i].entiteAccueil, 
+					anneeEtudeStr, 
+					interns[i].studyBranch 
+				};
+				for (int c = 0; c < content.Length; ++c)
 				{
 					var lbl = new System.Windows.Forms.Label();
-					lbl.Text = (c + r).ToString();
+					lbl.Text = content[c];
 					lbl.Dock = DockStyle.Fill;
-					internsTable.Controls.Add(lbl, c, r);
+					lbl.TextAlign = ContentAlignment.MiddleLeft;
+					lbl.Font = new Font(Label.DefaultFont.FontFamily, 12, FontStyle.Regular);
+					internsTable.Controls.Add(lbl, c, i + 1);
 				}
+
+				//Details button
+				var linkLbl = new System.Windows.Forms.LinkLabel();
+				linkLbl.Text = "Plus de détails";
+				linkLbl.Dock = DockStyle.Fill;
+				linkLbl.TextAlign = ContentAlignment.MiddleCenter;
+				linkLbl.Font = new Font("Segoe UI Semibold", 12, FontStyle.Bold);
+
+				int localIndex = i;
+				linkLbl.LinkClicked += delegate { new detailedInternViewFrm(interns[localIndex]).Show(); };
+
+				internsTable.Controls.Add(linkLbl, content.Length, i + 1);
 			}
 		}
 
