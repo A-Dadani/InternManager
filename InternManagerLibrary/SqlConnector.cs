@@ -242,5 +242,15 @@ namespace InternManagerLibrary
 
 			return interns;
 		}
+
+		public void DeleteIntern(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteIntern(InternModel intern)
+		{
+			DeleteIntern(intern.Id);
+		}
 	}
 }
