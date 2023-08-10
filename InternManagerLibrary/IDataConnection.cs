@@ -14,7 +14,7 @@ namespace InternManagerLibrary
 		int GetPFECount();
 		int GetObservationCount();
 		List<InternModel> GetInterns();
-		void DeleteIntern(int intern);
+		void DeleteIntern(int id);
 		void DeleteIntern(InternModel intern);
 	}
 }

@@ -17,8 +17,10 @@ namespace InternManagerUI.Partials
 {
 	public partial class manageInternsFrm : Form
 	{
-		public manageInternsFrm()
+		private layoutFrm _owner;
+		public manageInternsFrm(layoutFrm owner)
 		{
+			_owner = owner;
 			InitializeComponent();
 			InitializeTable();
 			loadingPanel.Hide();
@@ -108,10 +110,19 @@ namespace InternManagerUI.Partials
 				linkLbl.Font = new Font("Segoe UI Semibold", 12, FontStyle.Bold);
 
 				int localIndex = i;
-				linkLbl.LinkClicked += delegate { new detailedInternViewFrm(interns[localIndex]).Show(); };
+				linkLbl.LinkClicked += delegate { 
+					detailedInternViewFrm childForm = new detailedInternViewFrm(interns[localIndex]);
+					AddOwnedForm(childForm);
+					childForm.Show();
+				};
 
 				internsTable.Controls.Add(linkLbl, content.Length, i + 1);
 			}
+		}
+
+		public void RefreshSelf()
+		{
+			_owner.RefreshManageInterns();
 		}
 
 		private void searchTextBox_Enter(object sender, EventArgs e)

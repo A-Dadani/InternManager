@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Security.Cryptography;
+using System.Configuration;
 
 namespace InternManagerLibrary
 {
@@ -245,7 +246,21 @@ namespace InternManagerLibrary
 
 		public void DeleteIntern(int id)
 		{
-			throw new NotImplementedException();
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string deleteQuery = @"DELETE FROM `interns` WHERE `Id` = " + id.ToString();
+			MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, connection);
+			connection.Open();
+			int nDeletedRows = deleteCommand.ExecuteNonQuery();
+			if (nDeletedRows == 0)
+			{
+				throw new Exception("unknown_error");
+			}
 		}
 
 		public void DeleteIntern(InternModel intern)

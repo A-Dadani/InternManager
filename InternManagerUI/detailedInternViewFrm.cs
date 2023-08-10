@@ -16,6 +16,7 @@ namespace InternManagerUI
 {
 	public partial class detailedInternViewFrm : Form
 	{
+		private InternModel intern = default!;
 		public detailedInternViewFrm(InternModel intern)
 		{
 			if (!GlobalConfig.IsUserAuthenticated())
@@ -26,6 +27,8 @@ namespace InternManagerUI
 			}
 
 			InitializeComponent();
+
+			this.intern = intern;
 			Text = intern.lastName.ToUpper() + " "
 					+ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(intern.firstName.ToLower())
 					+ " détails • OCP";
@@ -105,7 +108,20 @@ namespace InternManagerUI
 
 		private void deletePanel_Click(object? sender, EventArgs e)
 		{
+			DialogResult dialogResult = MessageBox.Show("Êtes-vous sûr de vouloir supprimer l'entrée " 
+					+ intern.lastName.ToUpper() + " " 
+					+ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(intern.firstName.ToLower()) 
+					+ "?", 
+				"Confirmer suppression", 
+				MessageBoxButtons.OKCancel);
 
+			if (dialogResult == DialogResult.OK)
+			{
+				GlobalConfig.Connection.DeleteIntern(intern);
+				((manageInternsFrm)Owner).RefreshSelf();
+				Close();
+			}
+			return;
 		}
 	}
 }

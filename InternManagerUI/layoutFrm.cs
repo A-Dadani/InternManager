@@ -141,7 +141,7 @@ namespace InternManagerUI
 		{
 			manageInternsPanel.BackColor = Helpers.BrightenRedarken(manageInternsPanel.BackColor, -3.0f);
 		}
-		private void manageInternsPanel_Click(object? sender, EventArgs e)
+		private void manageInternsPanel_Click(object? sender, EventArgs? e)
 		{
 			//Set the navigation selector to the correct position
 			navigationSelectorPanel.Height = manageInternsPanel.Height;
@@ -156,7 +156,7 @@ namespace InternManagerUI
 			//Load the content (partial)
 			Cursor = Cursors.WaitCursor;
 			contentPlaceholderPanel.Controls.Clear();
-			manageInternsFrm manageInternsFrmInst = new manageInternsFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			manageInternsFrm manageInternsFrmInst = new manageInternsFrm(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
 			manageInternsFrmInst.FormBorderStyle = FormBorderStyle.None;
 			contentPlaceholderPanel.Controls.Add(manageInternsFrmInst);
 			manageInternsFrmInst.Show();
@@ -193,6 +193,11 @@ namespace InternManagerUI
 			contentPlaceholderPanel.Controls.Add(signupRequestsFrmInst);
 			signupRequestsFrmInst.Show();
 			Cursor = Cursors.Default;
+		}
+
+		public void RefreshManageInterns()
+		{
+			manageInternsPanel_Click(null, null);
 		}
 	}
 }
