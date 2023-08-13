@@ -37,7 +37,7 @@ namespace InternManagerUI
 					civiliteString = "Madame"; break;
 			}
 
-			bodyClosingText = "Veuillez agréer, " + civiliteString + " l'expression de nos sentiments distingués.";
+			bodyClosingText = "Veuillez agréer, " + civiliteString + ", l'expression de nos sentiments distingués.";
 		}
 
 		public DocumentMetadata GetMetadata()
@@ -115,7 +115,7 @@ namespace InternManagerUI
 				{
 					row.RelativeItem().AlignLeft().Text(text =>
 					{
-						text.Line(civiliteString);
+						text.Line(civiliteString + ",");
 						text.Span("\n").FontSize(5);
 						text.Line("        " + bodyOpeningText);
 					});

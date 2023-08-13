@@ -121,7 +121,7 @@ namespace InternManagerUI
 				var document = new ConvocationDocument(intern);
 				document.GeneratePdfAndShow();
 			}
-			catch (Exception ex)
+			catch
 			{
 				MessageBox.Show("Erreur inconnue, la génération du document n'est pas possible pour le moment. Réessayez ultérieurement.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
