@@ -205,7 +205,7 @@ namespace InternManagerLibrary
 			}
 		}
 
-		public List<InternModel> GetInterns()
+		public List<InternModel> GetInterns(string searchQuery = null)
 		{
 			if (!GlobalConfig.IsUserAuthenticated())
 			{
@@ -220,26 +220,48 @@ namespace InternManagerLibrary
 			connection.Open();
 			MySqlDataReader internsReader = internsSelectionCommand.ExecuteReader();
 
+			string[] searchKeywords = Array.Empty<string>();
+
+			if (searchQuery != null)
+			{
+				searchKeywords = searchQuery.Split(' ');
+			}
+
 			while (internsReader.Read())
 			{
-				interns.Add(
-					new InternModel(
-						internsReader.GetInt32("Id"), 
-						internsReader.GetString("first_name"), 
+				InternModel currIntern = new InternModel(
+						internsReader.GetInt32("Id"),
+						internsReader.GetString("first_name"),
 						internsReader.GetString("last_name"),
-						DateOnly.FromDateTime(internsReader.GetDateTime("start_date")), 
+						DateOnly.FromDateTime(internsReader.GetDateTime("start_date")),
 						DateOnly.FromDateTime(internsReader.GetDateTime("end_date")),
-						internsReader.GetString("internship_type"), 
+						internsReader.GetString("internship_type"),
 						internsReader.GetString("civilite"),
-						internsReader.GetString("school"), 
+						internsReader.GetString("school"),
 						internsReader.GetString("CNI"),
-						internsReader.GetInt32("study_year"), 
-						internsReader.GetString("study_branch"), 
+						internsReader.GetInt32("study_year"),
+						internsReader.GetString("study_branch"),
 						internsReader.GetString("direction_accueil"),
-						internsReader.GetString("entite_accueil"), 
+						internsReader.GetString("entite_accueil"),
 						internsReader.GetString("parrain")
-					)
-				);
+					);
+
+				string comparableString = currIntern.firstName + " "
+					+ currIntern.lastName + " "
+					+ currIntern.schoolName + " "
+					+ currIntern.internshipType;
+
+				if (searchQuery != null)
+				{
+					foreach (string keyword in searchKeywords)
+					{
+						if (!comparableString.Contains(keyword))
+						{
+							continue;
+						}
+					}
+				}
+				interns.Add(currIntern);
 			}
 
 			return interns;

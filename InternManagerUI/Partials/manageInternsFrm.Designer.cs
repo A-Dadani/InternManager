@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			internsTable = new TableLayoutPanel();
 			loadingPanel = new Panel();
 			loadingLabel = new Label();
 			loadingPictureBox = new PictureBox();
@@ -36,41 +35,33 @@
 			emptyListLabel = new Label();
 			emptyListLogo = new PictureBox();
 			searchTextBox = new TextBox();
-			magnifyingGlassImage = new PictureBox();
 			parentPanel = new Panel();
+			searchPanel = new Panel();
+			searchPictureBox = new PictureBox();
+			seachButtonLabel = new Label();
+			addPanel = new Panel();
+			addPictureBox = new PictureBox();
+			addLabel = new Label();
+			topParentPanel = new Panel();
+			horSeparatorPanel = new Panel();
 			loadingPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)loadingPictureBox).BeginInit();
 			emptyListPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)emptyListLogo).BeginInit();
-			((System.ComponentModel.ISupportInitialize)magnifyingGlassImage).BeginInit();
 			parentPanel.SuspendLayout();
+			searchPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)searchPictureBox).BeginInit();
+			addPanel.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)addPictureBox).BeginInit();
+			topParentPanel.SuspendLayout();
 			SuspendLayout();
-			// 
-			// internsTable
-			// 
-			internsTable.AutoSize = true;
-			internsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-			internsTable.ColumnCount = 5;
-			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-			internsTable.Location = new Point(20, 60);
-			internsTable.Margin = new Padding(3, 3, 3, 10);
-			internsTable.Name = "internsTable";
-			internsTable.Padding = new Padding(0, 0, 0, 20);
-			internsTable.RowCount = 1;
-			internsTable.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-			internsTable.Size = new Size(909, 44);
-			internsTable.TabIndex = 0;
-			internsTable.Visible = false;
+			
 			// 
 			// loadingPanel
 			// 
 			loadingPanel.Controls.Add(loadingLabel);
 			loadingPanel.Controls.Add(loadingPictureBox);
-			loadingPanel.Location = new Point(175, 257);
+			loadingPanel.Location = new Point(175, 226);
 			loadingPanel.Name = "loadingPanel";
 			loadingPanel.Size = new Size(598, 84);
 			loadingPanel.TabIndex = 1;
@@ -99,7 +90,7 @@
 			// 
 			emptyListPanel.Controls.Add(emptyListLabel);
 			emptyListPanel.Controls.Add(emptyListLogo);
-			emptyListPanel.Location = new Point(281, 257);
+			emptyListPanel.Location = new Point(281, 226);
 			emptyListPanel.Name = "emptyListPanel";
 			emptyListPanel.Size = new Size(386, 84);
 			emptyListPanel.TabIndex = 2;
@@ -127,41 +118,119 @@
 			// 
 			// searchTextBox
 			// 
+			searchTextBox.BackColor = Color.FromArgb(244, 246, 249);
 			searchTextBox.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
 			searchTextBox.ForeColor = Color.FromArgb(100, 108, 119);
 			searchTextBox.Location = new Point(20, 13);
 			searchTextBox.Name = "searchTextBox";
-			searchTextBox.Size = new Size(553, 35);
+			searchTextBox.Size = new Size(517, 35);
 			searchTextBox.TabIndex = 3;
 			searchTextBox.Text = "Rechercher...";
 			searchTextBox.Enter += searchTextBox_Enter;
 			searchTextBox.Leave += searchTextBox_Leave;
 			// 
-			// magnifyingGlassImage
-			// 
-			magnifyingGlassImage.BackColor = Color.Transparent;
-			magnifyingGlassImage.BackgroundImage = Properties.Resources.magnifying_glass_grey;
-			magnifyingGlassImage.BackgroundImageLayout = ImageLayout.Stretch;
-			magnifyingGlassImage.Location = new Point(543, 20);
-			magnifyingGlassImage.Name = "magnifyingGlassImage";
-			magnifyingGlassImage.Size = new Size(20, 20);
-			magnifyingGlassImage.TabIndex = 4;
-			magnifyingGlassImage.TabStop = false;
-			// 
 			// parentPanel
 			// 
 			parentPanel.AutoScroll = true;
-			parentPanel.Controls.Add(magnifyingGlassImage);
-			parentPanel.Controls.Add(searchTextBox);
 			parentPanel.Controls.Add(emptyListPanel);
 			parentPanel.Controls.Add(loadingPanel);
-			parentPanel.Controls.Add(internsTable);
-			parentPanel.Dock = DockStyle.Fill;
-			parentPanel.Location = new Point(0, 0);
+			parentPanel.Dock = DockStyle.Bottom;
+			parentPanel.Location = new Point(0, 62);
 			parentPanel.Margin = new Padding(0);
 			parentPanel.Name = "parentPanel";
-			parentPanel.Size = new Size(949, 598);
+			parentPanel.Size = new Size(949, 536);
 			parentPanel.TabIndex = 5;
+			// 
+			// searchPanel
+			// 
+			searchPanel.BackColor = Color.FromArgb(138, 192, 84);
+			searchPanel.Controls.Add(searchPictureBox);
+			searchPanel.Controls.Add(seachButtonLabel);
+			searchPanel.Location = new Point(543, 13);
+			searchPanel.Name = "searchPanel";
+			searchPanel.Size = new Size(190, 35);
+			searchPanel.TabIndex = 4;
+			searchPanel.Click += searchPanel_Click;
+			searchPanel.MouseEnter += searchPanel_MouseEnter;
+			searchPanel.MouseLeave += searchPanel_MouseLeave;
+			// 
+			// searchPictureBox
+			// 
+			searchPictureBox.BackColor = Color.Transparent;
+			searchPictureBox.BackgroundImage = Properties.Resources.magnifying_glass_white;
+			searchPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			searchPictureBox.Location = new Point(35, 7);
+			searchPictureBox.Name = "searchPictureBox";
+			searchPictureBox.Size = new Size(20, 20);
+			searchPictureBox.TabIndex = 1;
+			searchPictureBox.TabStop = false;
+			// 
+			// seachButtonLabel
+			// 
+			seachButtonLabel.AutoSize = true;
+			seachButtonLabel.BackColor = Color.Transparent;
+			seachButtonLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+			seachButtonLabel.ForeColor = Color.White;
+			seachButtonLabel.Location = new Point(54, 5);
+			seachButtonLabel.Name = "seachButtonLabel";
+			seachButtonLabel.Size = new Size(107, 25);
+			seachButtonLabel.TabIndex = 0;
+			seachButtonLabel.Text = "Rechercher";
+			// 
+			// addPanel
+			// 
+			addPanel.BackColor = Color.FromArgb(75, 137, 218);
+			addPanel.Controls.Add(addPictureBox);
+			addPanel.Controls.Add(addLabel);
+			addPanel.Location = new Point(739, 13);
+			addPanel.Name = "addPanel";
+			addPanel.Size = new Size(190, 35);
+			addPanel.TabIndex = 5;
+			addPanel.MouseEnter += addPanel_MouseEnter;
+			addPanel.MouseLeave += addPanel_MouseLeave;
+			// 
+			// addPictureBox
+			// 
+			addPictureBox.BackgroundImage = Properties.Resources.plus_white;
+			addPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+			addPictureBox.Location = new Point(50, 7);
+			addPictureBox.Name = "addPictureBox";
+			addPictureBox.Size = new Size(20, 20);
+			addPictureBox.TabIndex = 1;
+			addPictureBox.TabStop = false;
+			// 
+			// addLabel
+			// 
+			addLabel.AutoSize = true;
+			addLabel.BackColor = Color.Transparent;
+			addLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+			addLabel.ForeColor = Color.White;
+			addLabel.Location = new Point(71, 5);
+			addLabel.Name = "addLabel";
+			addLabel.Size = new Size(76, 25);
+			addLabel.TabIndex = 0;
+			addLabel.Text = "Ajouter";
+			// 
+			// topParentPanel
+			// 
+			topParentPanel.BackColor = Color.FromArgb(244, 246, 249);
+			topParentPanel.Controls.Add(addPanel);
+			topParentPanel.Controls.Add(searchPanel);
+			topParentPanel.Controls.Add(searchTextBox);
+			topParentPanel.Dock = DockStyle.Top;
+			topParentPanel.Location = new Point(0, 0);
+			topParentPanel.Name = "topParentPanel";
+			topParentPanel.Size = new Size(949, 60);
+			topParentPanel.TabIndex = 6;
+			// 
+			// horSeparatorPanel
+			// 
+			horSeparatorPanel.BackColor = Color.FromArgb(100, 108, 119);
+			horSeparatorPanel.Dock = DockStyle.Top;
+			horSeparatorPanel.Location = new Point(0, 60);
+			horSeparatorPanel.Name = "horSeparatorPanel";
+			horSeparatorPanel.Size = new Size(949, 2);
+			horSeparatorPanel.TabIndex = 7;
 			// 
 			// manageInternsFrm
 			// 
@@ -169,6 +238,8 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			BackColor = Color.White;
 			ClientSize = new Size(949, 598);
+			Controls.Add(horSeparatorPanel);
+			Controls.Add(topParentPanel);
 			Controls.Add(parentPanel);
 			Name = "manageInternsFrm";
 			Text = "manageInternsFrm";
@@ -179,15 +250,21 @@
 			emptyListPanel.ResumeLayout(false);
 			emptyListPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)emptyListLogo).EndInit();
-			((System.ComponentModel.ISupportInitialize)magnifyingGlassImage).EndInit();
 			parentPanel.ResumeLayout(false);
 			parentPanel.PerformLayout();
+			searchPanel.ResumeLayout(false);
+			searchPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)searchPictureBox).EndInit();
+			addPanel.ResumeLayout(false);
+			addPanel.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)addPictureBox).EndInit();
+			topParentPanel.ResumeLayout(false);
+			topParentPanel.PerformLayout();
 			ResumeLayout(false);
 		}
 
 		#endregion
 
-		private TableLayoutPanel internsTable;
 		private Panel loadingPanel;
 		private Label loadingLabel;
 		private PictureBox loadingPictureBox;
@@ -195,7 +272,15 @@
 		private Label emptyListLabel;
 		private PictureBox emptyListLogo;
 		private TextBox searchTextBox;
-		private PictureBox magnifyingGlassImage;
 		private Panel parentPanel;
+		private Panel addPanel;
+		private Panel searchPanel;
+		private Label seachButtonLabel;
+		private Label addLabel;
+		private PictureBox addPictureBox;
+		private Panel topParentPanel;
+		private Panel horSeparatorPanel;
+		private PictureBox searchPictureBox;
+		private TableLayoutPanel internsTable;
 	}
 }

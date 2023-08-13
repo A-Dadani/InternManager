@@ -22,22 +22,60 @@ namespace InternManagerUI.Partials
 		{
 			_owner = owner;
 			InitializeComponent();
-			InitializeTable();
+			RefreshTable(null);
 			loadingPanel.Hide();
 			internsTable.Show();
+
+			Helpers.BubbleHover(searchPanel, searchPanel_MouseEnter, searchPanel_MouseLeave);
+			Helpers.BubbleHover(addPanel, addPanel_MouseEnter, addPanel_MouseLeave);
 		}
 
 		private void manageInternsFrm_Shown(object sender, EventArgs e)
 		{
-			magnifyingGlassImage.Focus();
+			searchPanel.Focus();
 		}
 
-		private void InitializeTable()
+		private void RefreshTable(string? searchQuery)
 		{
+			parentPanel.Controls.Clear();
+			loadingPanel.Show();
+
+			internsTable = new TableLayoutPanel();
+
+			// 
+			// internsTable
+			// 
+			internsTable.AutoSize = true;
+			internsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+			internsTable.ColumnCount = 5;
+			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			internsTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+			internsTable.Location = new Point(20, 13);
+			internsTable.Margin = new Padding(3, 3, 3, 10);
+			internsTable.Name = "internsTable";
+			internsTable.Padding = new Padding(0, 0, 0, 20);
+			internsTable.RowCount = 1;
+			internsTable.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+			internsTable.Size = new Size(909, 44);
+			internsTable.TabIndex = 0;
+			internsTable.Visible = false;
+			parentPanel.Controls.Add(internsTable);
+
+
 			List<InternModel> interns = new List<InternModel>();
 			try
 			{
-				interns = GlobalConfig.Connection.GetInterns();
+				if (searchQuery != null)
+				{
+					interns = GlobalConfig.Connection.GetInterns(searchQuery);
+				}
+				else
+				{
+					interns = GlobalConfig.Connection.GetInterns();
+				}
 			}
 			catch (Exception ex)
 			{
@@ -86,11 +124,11 @@ namespace InternManagerUI.Partials
 					default:
 						anneeEtudeStr = interns[i].studyYear.ToString() + "ème année"; break;
 				}
-				string[] content = { 
-					interns[i].lastName.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(interns[i].firstName.ToLower()), 
-					interns[i].entiteAccueil, 
-					anneeEtudeStr, 
-					interns[i].studyBranch 
+				string[] content = {
+					interns[i].lastName.ToUpper() + " " + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(interns[i].firstName.ToLower()),
+					interns[i].entiteAccueil,
+					anneeEtudeStr,
+					interns[i].studyBranch
 				};
 				for (int c = 0; c < content.Length; ++c)
 				{
@@ -110,7 +148,8 @@ namespace InternManagerUI.Partials
 				linkLbl.Font = new Font("Segoe UI Semibold", 12, FontStyle.Bold);
 
 				int localIndex = i;
-				linkLbl.LinkClicked += delegate { 
+				linkLbl.LinkClicked += delegate
+				{
 					detailedInternViewFrm childForm = new detailedInternViewFrm(interns[localIndex]);
 					AddOwnedForm(childForm);
 					childForm.Show();
@@ -141,6 +180,31 @@ namespace InternManagerUI.Partials
 				searchTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#646c77");
 				searchTextBox.Text = "Rechercher...";
 			}
+		}
+
+		private void searchPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			searchPanel.BackColor = Helpers.DarkenRebrighten(searchPanel.BackColor, -0.25f);
+		}
+
+		private void searchPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			searchPanel.BackColor = Helpers.DarkenRebrighten(searchPanel.BackColor, 0.25f);
+		}
+
+		private void addPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			addPanel.BackColor = Helpers.DarkenRebrighten(addPanel.BackColor, -0.25f);
+		}
+
+		private void addPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			addPanel.BackColor = Helpers.DarkenRebrighten(addPanel.BackColor, 0.25f);
+		}
+
+		private void searchPanel_Click(object? sender, EventArgs e)
+		{
+
 		}
 	}
 }

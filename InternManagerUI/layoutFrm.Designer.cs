@@ -48,6 +48,7 @@
 			titleBarPanel = new Panel();
 			titleLabel = new Label();
 			contentPlaceholderPanel = new Panel();
+			panel1 = new Panel();
 			sideNavBar.SuspendLayout();
 			signupRequestsPanel.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)signupRequestsPictureBox).BeginInit();
@@ -245,6 +246,7 @@
 			// 
 			// titleBarPanel
 			// 
+			titleBarPanel.Controls.Add(panel1);
 			titleBarPanel.Controls.Add(titleLabel);
 			titleBarPanel.Location = new Point(316, 0);
 			titleBarPanel.Name = "titleBarPanel";
@@ -268,6 +270,15 @@
 			contentPlaceholderPanel.Name = "contentPlaceholderPanel";
 			contentPlaceholderPanel.Size = new Size(949, 598);
 			contentPlaceholderPanel.TabIndex = 2;
+			// 
+			// panel1
+			// 
+			panel1.BackColor = Color.FromArgb(100, 108, 119);
+			panel1.Dock = DockStyle.Bottom;
+			panel1.Location = new Point(0, 81);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(949, 2);
+			panel1.TabIndex = 1;
 			// 
 			// layoutFrm
 			// 
@@ -325,5 +336,6 @@
 		private Panel titleBarPanel;
 		private Label titleLabel;
 		private Panel contentPlaceholderPanel;
+		private Panel panel1;
 	}
 }

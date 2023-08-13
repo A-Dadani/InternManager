@@ -183,6 +183,16 @@ namespace InternManagerUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap magnifying_glass_white {
+            get {
+                object obj = ResourceManager.GetObject("magnifying_glass_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plus_white {
             get {
                 object obj = ResourceManager.GetObject("plus_white", resourceCulture);
