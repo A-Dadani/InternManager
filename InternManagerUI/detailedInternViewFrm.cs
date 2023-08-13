@@ -11,6 +11,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Org.BouncyCastle.Asn1.Cmp;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using QuestPDF.Infrastructure;
+using SkiaSharp;
+using System.IO;
 
 namespace InternManagerUI
 {
@@ -38,15 +43,22 @@ namespace InternManagerUI
 			//Fill the fields from the info of the intern passed as argument
 			lastNameLabel.Text = intern.lastName.ToUpper();
 			firstNameLabel.Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(intern.firstName.ToLower());
-			CNILabel.Text = intern.lastName.ToUpper();
+
+			switch (intern.civilite)
+			{
+				case InternModel.Civilite.monsieur:
+					civiliteLabel.Text = "Monsieur"; break;
+				case InternModel.Civilite.madame:
+					civiliteLabel.Text = "Madame"; break;
+			}
+
+			CNILabel.Text = intern.CNI;
 			ecoleLabel.Text = intern.schoolName;
 
 			switch (intern.studyYear)
 			{
 				case 1:
 					studyYearLabel.Text = "1ère année"; break;
-				case 2:
-					studyYearLabel.Text = "2ème année"; break;
 				default:
 					studyYearLabel.Text = intern.studyYear.ToString() + "ème année"; break;
 			}
@@ -103,16 +115,26 @@ namespace InternManagerUI
 
 		private void printPanel_Click(object? sender, EventArgs e)
 		{
-
+			Cursor = Cursors.WaitCursor;
+			try
+			{
+				var document = new ConvocationDocument(intern);
+				document.GeneratePdfAndShow();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erreur inconnue, la génération du document n'est pas possible pour le moment. Réessayez ultérieurement.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+			Cursor = Cursors.Default;
 		}
 
 		private void deletePanel_Click(object? sender, EventArgs e)
 		{
-			DialogResult dialogResult = MessageBox.Show("Êtes-vous sûr de vouloir supprimer l'entrée " 
-					+ intern.lastName.ToUpper() + " " 
-					+ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(intern.firstName.ToLower()) 
-					+ "?", 
-				"Confirmer suppression", 
+			DialogResult dialogResult = MessageBox.Show("Êtes-vous sûr de vouloir supprimer l'entrée "
+					+ intern.lastName.ToUpper() + " "
+					+ CultureInfo.CurrentCulture.TextInfo.ToTitleCase(intern.firstName.ToLower())
+					+ "?",
+				"Confirmer suppression",
 				MessageBoxButtons.OKCancel);
 
 			if (dialogResult == DialogResult.OK)

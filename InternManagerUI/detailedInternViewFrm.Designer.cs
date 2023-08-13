@@ -39,6 +39,8 @@
 			bigNameLabel = new Label();
 			horSperatorPanel = new Panel();
 			bodyPanel = new Panel();
+			civiliteLabel = new Label();
+			label15 = new Label();
 			parrainLabel = new Label();
 			endYearLabel = new Label();
 			startYearLabel = new Label();
@@ -176,6 +178,8 @@
 			// 
 			// bodyPanel
 			// 
+			bodyPanel.Controls.Add(civiliteLabel);
+			bodyPanel.Controls.Add(label15);
 			bodyPanel.Controls.Add(parrainLabel);
 			bodyPanel.Controls.Add(endYearLabel);
 			bodyPanel.Controls.Add(startYearLabel);
@@ -205,14 +209,34 @@
 			bodyPanel.Dock = DockStyle.Fill;
 			bodyPanel.Location = new Point(0, 69);
 			bodyPanel.Name = "bodyPanel";
-			bodyPanel.Size = new Size(848, 514);
+			bodyPanel.Size = new Size(848, 549);
 			bodyPanel.TabIndex = 2;
+			// 
+			// civiliteLabel
+			// 
+			civiliteLabel.AutoSize = true;
+			civiliteLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+			civiliteLabel.Location = new Point(178, 125);
+			civiliteLabel.Name = "civiliteLabel";
+			civiliteLabel.Size = new Size(81, 25);
+			civiliteLabel.TabIndex = 27;
+			civiliteLabel.Text = "<none>";
+			// 
+			// label15
+			// 
+			label15.AutoSize = true;
+			label15.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+			label15.Location = new Point(106, 125);
+			label15.Name = "label15";
+			label15.Size = new Size(76, 25);
+			label15.TabIndex = 26;
+			label15.Text = "Civilité:";
 			// 
 			// parrainLabel
 			// 
 			parrainLabel.AutoSize = true;
 			parrainLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			parrainLabel.Location = new Point(179, 455);
+			parrainLabel.Location = new Point(179, 500);
 			parrainLabel.Name = "parrainLabel";
 			parrainLabel.Size = new Size(81, 25);
 			parrainLabel.TabIndex = 25;
@@ -222,7 +246,7 @@
 			// 
 			endYearLabel.AutoSize = true;
 			endYearLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			endYearLabel.Location = new Point(188, 423);
+			endYearLabel.Location = new Point(188, 467);
 			endYearLabel.Name = "endYearLabel";
 			endYearLabel.Size = new Size(81, 25);
 			endYearLabel.TabIndex = 24;
@@ -232,7 +256,7 @@
 			// 
 			startYearLabel.AutoSize = true;
 			startYearLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			startYearLabel.Location = new Point(215, 391);
+			startYearLabel.Location = new Point(215, 434);
 			startYearLabel.Name = "startYearLabel";
 			startYearLabel.Size = new Size(81, 25);
 			startYearLabel.TabIndex = 23;
@@ -242,7 +266,7 @@
 			// 
 			directionAccueilLabel.AutoSize = true;
 			directionAccueilLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			directionAccueilLabel.Location = new Point(278, 359);
+			directionAccueilLabel.Location = new Point(278, 401);
 			directionAccueilLabel.Name = "directionAccueilLabel";
 			directionAccueilLabel.Size = new Size(81, 25);
 			directionAccueilLabel.TabIndex = 22;
@@ -252,7 +276,7 @@
 			// 
 			entiteAccueilLabel.AutoSize = true;
 			entiteAccueilLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			entiteAccueilLabel.Location = new Point(249, 327);
+			entiteAccueilLabel.Location = new Point(249, 368);
 			entiteAccueilLabel.Name = "entiteAccueilLabel";
 			entiteAccueilLabel.Size = new Size(81, 25);
 			entiteAccueilLabel.TabIndex = 21;
@@ -262,7 +286,7 @@
 			// 
 			internshipTypeLabel.AutoSize = true;
 			internshipTypeLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			internshipTypeLabel.Location = new Point(236, 295);
+			internshipTypeLabel.Location = new Point(236, 335);
 			internshipTypeLabel.Name = "internshipTypeLabel";
 			internshipTypeLabel.Size = new Size(81, 25);
 			internshipTypeLabel.TabIndex = 20;
@@ -272,7 +296,7 @@
 			// 
 			studyBranchLabel.AutoSize = true;
 			studyBranchLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			studyBranchLabel.Location = new Point(201, 215);
+			studyBranchLabel.Location = new Point(201, 257);
 			studyBranchLabel.Name = "studyBranchLabel";
 			studyBranchLabel.Size = new Size(81, 25);
 			studyBranchLabel.TabIndex = 19;
@@ -282,7 +306,7 @@
 			// 
 			studyYearLabel.AutoSize = true;
 			studyYearLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			studyYearLabel.Location = new Point(244, 183);
+			studyYearLabel.Location = new Point(244, 224);
 			studyYearLabel.Name = "studyYearLabel";
 			studyYearLabel.Size = new Size(81, 25);
 			studyYearLabel.TabIndex = 18;
@@ -292,7 +316,7 @@
 			// 
 			ecoleLabel.AutoSize = true;
 			ecoleLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			ecoleLabel.Location = new Point(164, 151);
+			ecoleLabel.Location = new Point(162, 191);
 			ecoleLabel.Name = "ecoleLabel";
 			ecoleLabel.Size = new Size(81, 25);
 			ecoleLabel.TabIndex = 17;
@@ -302,7 +326,7 @@
 			// 
 			CNILabel.AutoSize = true;
 			CNILabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			CNILabel.Location = new Point(152, 119);
+			CNILabel.Location = new Point(152, 158);
 			CNILabel.Name = "CNILabel";
 			CNILabel.Size = new Size(81, 25);
 			CNILabel.TabIndex = 16;
@@ -312,7 +336,7 @@
 			// 
 			firstNameLabel.AutoSize = true;
 			firstNameLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			firstNameLabel.Location = new Point(186, 87);
+			firstNameLabel.Location = new Point(186, 92);
 			firstNameLabel.Name = "firstNameLabel";
 			firstNameLabel.Size = new Size(81, 25);
 			firstNameLabel.TabIndex = 15;
@@ -322,7 +346,7 @@
 			// 
 			lastNameLabel.AutoSize = true;
 			lastNameLabel.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-			lastNameLabel.Location = new Point(162, 55);
+			lastNameLabel.Location = new Point(162, 59);
 			lastNameLabel.Name = "lastNameLabel";
 			lastNameLabel.Size = new Size(81, 25);
 			lastNameLabel.TabIndex = 14;
@@ -332,7 +356,7 @@
 			// 
 			label13.AutoSize = true;
 			label13.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label13.Location = new Point(106, 455);
+			label13.Location = new Point(106, 500);
 			label13.Name = "label13";
 			label13.Size = new Size(77, 25);
 			label13.TabIndex = 13;
@@ -342,7 +366,7 @@
 			// 
 			label12.AutoSize = true;
 			label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label12.Location = new Point(106, 423);
+			label12.Location = new Point(106, 467);
 			label12.Name = "label12";
 			label12.Size = new Size(86, 25);
 			label12.TabIndex = 12;
@@ -352,7 +376,7 @@
 			// 
 			label11.AutoSize = true;
 			label11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label11.Location = new Point(106, 391);
+			label11.Location = new Point(106, 434);
 			label11.Name = "label11";
 			label11.Size = new Size(113, 25);
 			label11.TabIndex = 11;
@@ -362,7 +386,7 @@
 			// 
 			label10.AutoSize = true;
 			label10.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label10.Location = new Point(106, 359);
+			label10.Location = new Point(106, 401);
 			label10.Name = "label10";
 			label10.Size = new Size(176, 25);
 			label10.TabIndex = 10;
@@ -372,7 +396,7 @@
 			// 
 			label9.AutoSize = true;
 			label9.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label9.Location = new Point(106, 327);
+			label9.Location = new Point(106, 368);
 			label9.Name = "label9";
 			label9.Size = new Size(147, 25);
 			label9.TabIndex = 9;
@@ -382,7 +406,7 @@
 			// 
 			label8.AutoSize = true;
 			label8.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label8.Location = new Point(106, 295);
+			label8.Location = new Point(106, 335);
 			label8.Name = "label8";
 			label8.Size = new Size(134, 25);
 			label8.TabIndex = 8;
@@ -392,7 +416,7 @@
 			// 
 			label7.AutoSize = true;
 			label7.Font = new Font("Segoe UI Semibold", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label7.Location = new Point(32, 252);
+			label7.Location = new Point(32, 290);
 			label7.Name = "label7";
 			label7.Size = new Size(321, 37);
 			label7.TabIndex = 7;
@@ -402,7 +426,7 @@
 			// 
 			label6.AutoSize = true;
 			label6.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label6.Location = new Point(106, 215);
+			label6.Location = new Point(106, 257);
 			label6.Name = "label6";
 			label6.Size = new Size(99, 25);
 			label6.TabIndex = 6;
@@ -412,7 +436,7 @@
 			// 
 			label5.AutoSize = true;
 			label5.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label5.Location = new Point(106, 183);
+			label5.Location = new Point(106, 224);
 			label5.Name = "label5";
 			label5.Size = new Size(142, 25);
 			label5.TabIndex = 5;
@@ -422,7 +446,7 @@
 			// 
 			label4.AutoSize = true;
 			label4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label4.Location = new Point(106, 151);
+			label4.Location = new Point(106, 191);
 			label4.Name = "label4";
 			label4.Size = new Size(62, 25);
 			label4.TabIndex = 4;
@@ -432,7 +456,7 @@
 			// 
 			label3.AutoSize = true;
 			label3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label3.Location = new Point(106, 119);
+			label3.Location = new Point(106, 158);
 			label3.Name = "label3";
 			label3.Size = new Size(50, 25);
 			label3.TabIndex = 3;
@@ -442,7 +466,7 @@
 			// 
 			label2.AutoSize = true;
 			label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label2.Location = new Point(106, 87);
+			label2.Location = new Point(106, 92);
 			label2.Name = "label2";
 			label2.Size = new Size(84, 25);
 			label2.TabIndex = 2;
@@ -452,7 +476,7 @@
 			// 
 			label1.AutoSize = true;
 			label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			label1.Location = new Point(106, 55);
+			label1.Location = new Point(106, 59);
 			label1.Name = "label1";
 			label1.Size = new Size(60, 25);
 			label1.TabIndex = 1;
@@ -472,7 +496,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(848, 583);
+			ClientSize = new Size(848, 618);
 			Controls.Add(bodyPanel);
 			Controls.Add(horSperatorPanel);
 			Controls.Add(headerPanel);
@@ -532,5 +556,7 @@
 		private Label directionAccueilLabel;
 		private Label entiteAccueilLabel;
 		private Label internshipTypeLabel;
+		private Label civiliteLabel;
+		private Label label15;
 	}
 }

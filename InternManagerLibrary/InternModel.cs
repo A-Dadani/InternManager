@@ -16,6 +16,12 @@ namespace InternManagerLibrary
 			Other
 		}
 
+		public enum Civilite
+		{
+			madame,
+			monsieur
+		}
+
         public InternModel(
 			int Id, 
 			string firstName, 
@@ -23,6 +29,7 @@ namespace InternManagerLibrary
 			DateOnly startDate, 
 			DateOnly endDate, 
 			string internshipType,
+			string civilite,
 			string schoolName, 
 			string CNI, 
 			int studyYear, 
@@ -55,6 +62,16 @@ namespace InternManagerLibrary
 				default:
 					this.internshipType = InternshipType.Other; break;
 			}
+
+			switch (civilite)
+			{
+				case "madame":
+					this.civilite = Civilite.madame; break;
+				case "monsieur":
+					this.civilite = Civilite.monsieur; break;
+				default:
+					throw new Exception("unknown_error");
+			}
         }
 
         public int Id { get; set; }
@@ -63,6 +80,7 @@ namespace InternManagerLibrary
 		public DateOnly startDate { get; set; }
 		public DateOnly endDate { get; set; }
 		public InternshipType internshipType { get; set; }
+		public Civilite civilite { get; set; }
 		public string schoolName { get; set; }
 		public string CNI { get; set; }
 		public int studyYear { get; set; }

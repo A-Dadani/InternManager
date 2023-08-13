@@ -230,6 +230,7 @@ namespace InternManagerLibrary
 						DateOnly.FromDateTime(internsReader.GetDateTime("start_date")), 
 						DateOnly.FromDateTime(internsReader.GetDateTime("end_date")),
 						internsReader.GetString("internship_type"), 
+						internsReader.GetString("civilite"),
 						internsReader.GetString("school"), 
 						internsReader.GetString("CNI"),
 						internsReader.GetInt32("study_year"), 

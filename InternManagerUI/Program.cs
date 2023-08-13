@@ -1,3 +1,5 @@
+using QuestPDF.Infrastructure;
+
 namespace InternManagerUI
 {
 	internal static class Program
@@ -12,6 +14,7 @@ namespace InternManagerUI
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			InternManagerLibrary.GlobalConfig.InitializeConnection();
+			QuestPDF.Settings.License = LicenseType.Community;
 			Application.Run(new login());
 		}
 	}
