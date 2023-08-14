@@ -55,7 +55,6 @@
 			((System.ComponentModel.ISupportInitialize)addPictureBox).BeginInit();
 			topParentPanel.SuspendLayout();
 			SuspendLayout();
-			
 			// 
 			// loadingPanel
 			// 
@@ -127,6 +126,7 @@
 			searchTextBox.TabIndex = 3;
 			searchTextBox.Text = "Rechercher...";
 			searchTextBox.Enter += searchTextBox_Enter;
+			searchTextBox.KeyDown += searchTextBox_KeyDown;
 			searchTextBox.Leave += searchTextBox_Leave;
 			// 
 			// parentPanel
@@ -251,7 +251,6 @@
 			emptyListPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)emptyListLogo).EndInit();
 			parentPanel.ResumeLayout(false);
-			parentPanel.PerformLayout();
 			searchPanel.ResumeLayout(false);
 			searchPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)searchPictureBox).EndInit();

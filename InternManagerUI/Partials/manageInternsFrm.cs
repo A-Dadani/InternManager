@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using InternManagerLibrary;
 using System.Globalization;
+using System.Diagnostics.Eventing.Reader;
 
 namespace InternManagerUI.Partials
 {
@@ -23,11 +24,10 @@ namespace InternManagerUI.Partials
 			_owner = owner;
 			InitializeComponent();
 			RefreshTable(null);
-			loadingPanel.Hide();
-			internsTable.Show();
 
 			Helpers.BubbleHover(searchPanel, searchPanel_MouseEnter, searchPanel_MouseLeave);
 			Helpers.BubbleHover(addPanel, addPanel_MouseEnter, addPanel_MouseLeave);
+			Helpers.BubbleClick(searchPanel, searchPanel_Click);
 		}
 
 		private void manageInternsFrm_Shown(object sender, EventArgs e)
@@ -37,14 +37,22 @@ namespace InternManagerUI.Partials
 
 		private void RefreshTable(string? searchQuery)
 		{
-			parentPanel.Controls.Clear();
+			emptyListPanel.Hide();
+			parentPanel.Controls.Remove(internsTable);
+			if (internsTable != null)
+			{
+				internsTable.Dispose();
+				internsTable = null;
+			}
 			loadingPanel.Show();
 
 			internsTable = new TableLayoutPanel();
 
+			#region Setting up internsTable properties
 			// 
 			// internsTable
 			// 
+			internsTable.Visible = false;
 			internsTable.AutoSize = true;
 			internsTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
 			internsTable.ColumnCount = 5;
@@ -61,9 +69,8 @@ namespace InternManagerUI.Partials
 			internsTable.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
 			internsTable.Size = new Size(909, 44);
 			internsTable.TabIndex = 0;
-			internsTable.Visible = false;
 			parentPanel.Controls.Add(internsTable);
-
+			#endregion
 
 			List<InternModel> interns = new List<InternModel>();
 			try
@@ -157,6 +164,8 @@ namespace InternManagerUI.Partials
 
 				internsTable.Controls.Add(linkLbl, content.Length, i + 1);
 			}
+			loadingPanel.Hide();
+			internsTable.Show();
 		}
 
 		public void RefreshSelf()
@@ -204,7 +213,22 @@ namespace InternManagerUI.Partials
 
 		private void searchPanel_Click(object? sender, EventArgs e)
 		{
+			if (searchTextBox.Text == "Rechercher..." || string.IsNullOrEmpty(searchTextBox.Text))
+			{
+				RefreshTable(null);
+			}
+			else
+			{
+				RefreshTable(searchTextBox.Text.Trim());
+			}
+		}
 
+		private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				searchPanel_Click(this, new EventArgs());
+			}
 		}
 	}
 }

@@ -248,19 +248,33 @@ namespace InternManagerLibrary
 
 				string comparableString = currIntern.firstName + " "
 					+ currIntern.lastName + " "
-					+ currIntern.schoolName + " "
-					+ currIntern.internshipType;
+					+ currIntern.schoolName + " ";
 
+				switch (currIntern.internshipType)
+				{
+					case InternModel.InternshipType.PFA:
+						comparableString += "PFA"; break;
+					case InternModel.InternshipType.PFE:
+						comparableString += "PFE"; break;
+					case InternModel.InternshipType.Obs:
+						comparableString += "observation"; break;
+				}
+
+				bool toBeAdded = true;
 				if (searchQuery != null)
 				{
 					foreach (string keyword in searchKeywords)
 					{
-						if (!comparableString.Contains(keyword))
+						if (!comparableString.Contains(keyword, StringComparison.OrdinalIgnoreCase))
 						{
-							continue;
+							toBeAdded = false;
+							break;
 						}
 					}
 				}
+
+				if (!toBeAdded) continue;
+
 				interns.Add(currIntern);
 			}
 
