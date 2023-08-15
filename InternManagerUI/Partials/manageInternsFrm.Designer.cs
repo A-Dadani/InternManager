@@ -186,6 +186,7 @@
 			addPanel.Name = "addPanel";
 			addPanel.Size = new Size(190, 35);
 			addPanel.TabIndex = 5;
+			addPanel.Click += addPanel_Click;
 			addPanel.MouseEnter += addPanel_MouseEnter;
 			addPanel.MouseLeave += addPanel_MouseLeave;
 			// 

@@ -28,6 +28,7 @@ namespace InternManagerUI.Partials
 			Helpers.BubbleHover(searchPanel, searchPanel_MouseEnter, searchPanel_MouseLeave);
 			Helpers.BubbleHover(addPanel, addPanel_MouseEnter, addPanel_MouseLeave);
 			Helpers.BubbleClick(searchPanel, searchPanel_Click);
+			Helpers.BubbleClick(addPanel, addPanel_Click);
 		}
 
 		private void manageInternsFrm_Shown(object sender, EventArgs e)
@@ -229,6 +230,11 @@ namespace InternManagerUI.Partials
 			{
 				searchPanel_Click(this, new EventArgs());
 			}
+		}
+
+		private void addPanel_Click(object? sender, EventArgs e)
+		{
+			new addInternFrm() { TopMost = true }.ShowDialog();
 		}
 	}
 }
