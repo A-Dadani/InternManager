@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InternManagerLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,6 +39,28 @@ namespace InternManagerUI
 			}
 
 			warnLabel.Text = "‎"; // Invisible char
+
+			string civiliteStr = civiliteComboBox.SelectedItem.ToString() ?? ""; // To suppress warning
+
+			InternModel newIntern = new InternModel(
+				firstNameTextBox.Text,
+				lastNameTextBox.Text,
+				DateOnly.FromDateTime(startDatePicker.Value),
+				DateOnly.FromDateTime(endDatePicker.Value),
+				internshipTypeComboBox.SelectedItem.ToString(),
+				civiliteStr.ToLower(),
+				schoolTextBox.Text,
+				CNITextBox.Text,
+				Int32.Parse(studyYearTextBox.Text),
+				studyBranchTextBox.Text,
+				directionAccueilTextBox.Text,
+				entiteAccueilTextBox.Text,
+				parrainTextBox.Text
+			);
+
+			GlobalConfig.Connection.InsertIntern(newIntern);
+
+			//TODO: Success message or something
 		}
 
 		private bool ValidateInputAndShowError()

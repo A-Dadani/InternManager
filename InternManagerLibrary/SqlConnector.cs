@@ -278,7 +278,62 @@ namespace InternManagerLibrary
 				interns.Add(currIntern);
 			}
 
+			connection.Close();
+
 			return interns;
+		}
+
+		public void InsertIntern(InternModel intern)
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string internshipTypeStr = string.Empty;
+			string civiliteStr = string.Empty;
+
+			switch (intern.internshipType)
+			{
+				case InternModel.InternshipType.PFE:
+					internshipTypeStr = "PFE"; break;
+				case InternModel.InternshipType.PFA:
+					internshipTypeStr = "PFA"; break;
+				case InternModel.InternshipType.Obs:
+					internshipTypeStr = "Observation"; break;
+				case InternModel.InternshipType.Other:
+					internshipTypeStr = "Other"; break;
+			}
+
+			switch (intern.civilite)
+			{
+				case InternModel.Civilite.monsieur:
+					civiliteStr = "monsieur"; break;
+				case InternModel.Civilite.madame:
+					civiliteStr = "madame"; break;
+			}
+
+			string insertQuery = @"INSERT INTO `interns` (`first_name`, `last_name`, `start_date`, `end_date`, `internship_type`, `school`, `CNI`, `study_year`, `study_branch`, `direction_accueil`, `entite_accueil`, `parrain`, `civilite`) VALUES ('" 
+				+ intern.firstName.Replace("'", "''")  + "', '" 
+				+ intern.lastName.Replace("'", "''") + "', '" 
+				+ intern.startDate.ToString("yyyy-MM-dd") + "', '" 
+				+ intern.endDate.ToString("yyyy-MM-dd") + "', '" 
+				+ internshipTypeStr + "', '" 
+				+ intern.schoolName.Replace("'", "''") + "', '" 
+				+ intern.CNI.ToUpper() + "', '" 
+				+ intern.studyYear + "', '" 
+				+ intern.studyBranch.Replace("'", "''") + "', '" 
+				+ intern.directionAccueil.Replace("'", "''") + "', '" 
+				+ intern.entiteAccueil.Replace("'", "''") + "', '" 
+				+ intern.parrain.Replace("'", "''") + "', '" 
+				+ civiliteStr + "')";
+
+			MySqlCommand insertCommand = new MySqlCommand(insertQuery, connection);
+			connection.Open();
+			insertCommand.ExecuteNonQuery();
+			connection.Close();
 		}
 
 		public void DeleteIntern(int id)
@@ -296,8 +351,10 @@ namespace InternManagerLibrary
 			int nDeletedRows = deleteCommand.ExecuteNonQuery();
 			if (nDeletedRows == 0)
 			{
+				connection.Close();
 				throw new Exception("unknown_error");
 			}
+			connection.Close();
 		}
 
 		public void DeleteIntern(InternModel intern)

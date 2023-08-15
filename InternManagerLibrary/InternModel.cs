@@ -74,7 +74,57 @@ namespace InternManagerLibrary
 			}
         }
 
-        public int Id { get; set; }
+		public InternModel(
+			string firstName,
+			string lastName,
+			DateOnly startDate,
+			DateOnly endDate,
+			string internshipType,
+			string civilite,
+			string schoolName,
+			string CNI,
+			int studyYear,
+			string studyBranch,
+			string directionAccueil,
+			string entiteAccueil,
+			string parrain)
+		{
+			this.firstName = firstName;
+			this.lastName = lastName;
+			this.startDate = startDate;
+			this.endDate = endDate;
+			this.schoolName = schoolName;
+			this.CNI = CNI;
+			this.studyYear = studyYear;
+			this.studyBranch = studyBranch;
+			this.directionAccueil = directionAccueil;
+			this.entiteAccueil = entiteAccueil;
+			this.parrain = parrain;
+
+			switch (internshipType)
+			{
+				case "PFE":
+					this.internshipType = InternshipType.PFE; break;
+				case "PFA":
+					this.internshipType = InternshipType.PFA; break;
+				case "Observation":
+					this.internshipType = InternshipType.Obs; break;
+				default:
+					this.internshipType = InternshipType.Other; break;
+			}
+
+			switch (civilite)
+			{
+				case "madame":
+					this.civilite = Civilite.madame; break;
+				case "monsieur":
+					this.civilite = Civilite.monsieur; break;
+				default:
+					throw new Exception("unknown_error");
+			}
+		}
+
+		public int Id { get; set; }
 		public string firstName { get; set; }
 		public string lastName { get; set;}
 		public DateOnly startDate { get; set; }
