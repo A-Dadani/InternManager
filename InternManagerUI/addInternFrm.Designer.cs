@@ -33,7 +33,6 @@
 			titleLabel = new Label();
 			horSeparatorPanel = new Panel();
 			parentPanel = new Panel();
-			emptyHeightHolderLabel = new Label();
 			warnLabel = new Label();
 			submitPanel = new Panel();
 			label1 = new Label();
@@ -103,7 +102,6 @@
 			// 
 			parentPanel.AutoScroll = true;
 			parentPanel.BackColor = Color.White;
-			parentPanel.Controls.Add(emptyHeightHolderLabel);
 			parentPanel.Controls.Add(warnLabel);
 			parentPanel.Controls.Add(submitPanel);
 			parentPanel.Controls.Add(parrainTextBox);
@@ -140,17 +138,6 @@
 			parentPanel.Size = new Size(800, 546);
 			parentPanel.TabIndex = 2;
 			// 
-			// emptyHeightHolderLabel
-			// 
-			emptyHeightHolderLabel.AutoSize = true;
-			emptyHeightHolderLabel.Font = new Font("Segoe UI", 13F, FontStyle.Regular, GraphicsUnit.Point);
-			emptyHeightHolderLabel.Location = new Point(22, 912);
-			emptyHeightHolderLabel.Name = "emptyHeightHolderLabel";
-			emptyHeightHolderLabel.Padding = new Padding(0, 0, 0, 10);
-			emptyHeightHolderLabel.Size = new Size(12, 35);
-			emptyHeightHolderLabel.TabIndex = 29;
-			emptyHeightHolderLabel.Text = "‎";
-			// 
 			// warnLabel
 			// 
 			warnLabel.AutoSize = true;
@@ -158,10 +145,10 @@
 			warnLabel.ForeColor = Color.FromArgb(232, 86, 63);
 			warnLabel.Location = new Point(61, 912);
 			warnLabel.Name = "warnLabel";
-			warnLabel.Size = new Size(77, 25);
+			warnLabel.Padding = new Padding(0, 0, 0, 10);
+			warnLabel.Size = new Size(12, 35);
 			warnLabel.TabIndex = 28;
-			warnLabel.Text = "<none>";
-			warnLabel.Visible = false;
+			warnLabel.Text = "‎";
 			// 
 			// submitPanel
 			// 
@@ -510,6 +497,5 @@
 		private Panel submitPanel;
 		private Label label1;
 		private Label warnLabel;
-		private Label emptyHeightHolderLabel;
 	}
 }
