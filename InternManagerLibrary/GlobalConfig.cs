@@ -43,7 +43,7 @@ namespace InternManagerLibrary
 
 		public static bool IsUserAuthenticated() 
 		{
-			return _connectedUser != null;
+			return (_connectedUser != null && _connectedUser.isConfirmed);
 		}
 	}
 }

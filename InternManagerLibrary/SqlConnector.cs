@@ -49,17 +49,19 @@ namespace InternManagerLibrary
 		{
 			MySqlConnection connection = new MySqlConnection(_connectionString);
 
-			string passwordSelectionQuery = @"SELECT `password` FROM admins WHERE email=""" + email + @""";";
-			MySqlCommand passwordSelectionCommand = new MySqlCommand(passwordSelectionQuery, connection);
+			string authInfoSelectionQuery = @"SELECT `password`, `is_confirmed` FROM admins WHERE email=""" + email + @""";";
+			MySqlCommand authInfoSelectionCommand = new MySqlCommand(authInfoSelectionQuery, connection);
 			connection.Open();
-			MySqlDataReader passwordReader = passwordSelectionCommand.ExecuteReader();
+			MySqlDataReader authInfoReader = authInfoSelectionCommand.ExecuteReader();
 
 			// There should only be a single hit, hence the use of if instead of while
 			string passwordHash = string.Empty;
+			bool isConfirmed = false;
 
-			if (passwordReader.Read()) 
+			if (authInfoReader.Read()) 
 			{
-				passwordHash = passwordReader.GetString("password");
+				passwordHash = authInfoReader.GetString("password");
+				isConfirmed = authInfoReader.GetBoolean("is_confirmed");
 			}
 
 			if (string.IsNullOrEmpty(passwordHash))
@@ -74,7 +76,13 @@ namespace InternManagerLibrary
 				throw new Exception("failed_auth");
 			}
 
-			passwordReader.Close();
+			if (!isConfirmed)
+			{
+				connection.Close();
+				throw new Exception("not_confirmed");
+			}
+
+			authInfoReader.Close();
 
 			string userSelectionQuery = @"SELECT `id`, `full_name` FROM admins WHERE email=""" + email + @""";";
 			MySqlCommand userSelectionCommand = new MySqlCommand(userSelectionQuery, connection);
@@ -96,9 +104,10 @@ namespace InternManagerLibrary
 			userReader.Close();
 			connection.Close();
 
-			GlobalConfig.connectedUser = new AdminModel(Id, fullName, email);
+			AdminModel connectedUser = new AdminModel(Id, fullName, email, isConfirmed);
+			GlobalConfig.connectedUser = connectedUser;
 
-			return new AdminModel(Id, fullName, email);
+			return connectedUser;
 		}
 
 		public int GetAdminCount()

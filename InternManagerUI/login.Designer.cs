@@ -81,6 +81,7 @@
 			createRequestLinkLabel.TabIndex = 7;
 			createRequestLinkLabel.TabStop = true;
 			createRequestLinkLabel.Text = "Créez une demande";
+			createRequestLinkLabel.LinkClicked += createRequestLinkLabel_LinkClicked;
 			// 
 			// noAccountLabel
 			// 

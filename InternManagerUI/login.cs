@@ -100,6 +100,10 @@ namespace InternManagerUI
 				{
 					credentialsWarnLabel.Text = "Email ou mot de passe érroné";
 				}
+				else if (ex.Message == "not_confirmed")
+				{
+					credentialsWarnLabel.Text = "Votre compte est toujours en cours de vérification.";
+				}
 				else
 				{
 					credentialsWarnLabel.Text = $"Erreur inconnue: {ex.Message}";
@@ -113,7 +117,8 @@ namespace InternManagerUI
 			AddOwnedForm(layoutForm);
 			layoutForm.Location = Location;
 			layoutForm.StartPosition = FormStartPosition.Manual;
-			layoutForm.FormClosed += (sender, e) => {
+			layoutForm.FormClosed += (sender, e) =>
+			{
 				// User initiated closing is handled inside of the layoutFrm class (possibility of logout)
 				// If reason is owner closing we don't need to do anything
 				if (e.CloseReason != CloseReason.UserClosing && e.CloseReason != CloseReason.FormOwnerClosing)
@@ -122,6 +127,26 @@ namespace InternManagerUI
 				}
 			};
 			layoutForm.Show();
+			Hide();
+			Reset();
+		}
+
+		private void createRequestLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			signUpFrm signUpForm = new signUpFrm();
+			AddOwnedForm(signUpForm);
+			signUpForm.Location = Location;
+			signUpForm.StartPosition = FormStartPosition.Manual;
+			signUpForm.FormClosed += (sender, e) =>
+			{
+				// User initiated closing is handled inside of the layoutFrm class (possibility of logout)
+				// If reason is owner closing we don't need to do anything
+				if (e.CloseReason != CloseReason.UserClosing && e.CloseReason != CloseReason.FormOwnerClosing)
+				{
+					Close();
+				}
+			};
+			signUpForm.Show();
 			Hide();
 			Reset();
 		}
