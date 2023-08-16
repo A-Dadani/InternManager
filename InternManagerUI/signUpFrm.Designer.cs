@@ -30,6 +30,8 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signUpFrm));
 			backroundSmallPanel = new Panel();
+			successMessageLabel = new Label();
+			nameWarnLabel = new Label();
 			passwordConfirmationWarnLabel = new Label();
 			passwordConfirmTextBox = new MaskedTextBox();
 			lastNameTextBox = new MaskedTextBox();
@@ -37,7 +39,7 @@
 			passwordWarnLabel = new Label();
 			createRequestLinkLabel = new LinkLabel();
 			noAccountLabel = new Label();
-			signInButton = new Button();
+			signUpButton = new Button();
 			emailWarnLabel = new Label();
 			passwordTextBox = new MaskedTextBox();
 			emailTextBox = new MaskedTextBox();
@@ -49,6 +51,8 @@
 			// 
 			// backroundSmallPanel
 			// 
+			backroundSmallPanel.Controls.Add(successMessageLabel);
+			backroundSmallPanel.Controls.Add(nameWarnLabel);
 			backroundSmallPanel.Controls.Add(passwordConfirmationWarnLabel);
 			backroundSmallPanel.Controls.Add(passwordConfirmTextBox);
 			backroundSmallPanel.Controls.Add(lastNameTextBox);
@@ -56,16 +60,40 @@
 			backroundSmallPanel.Controls.Add(passwordWarnLabel);
 			backroundSmallPanel.Controls.Add(createRequestLinkLabel);
 			backroundSmallPanel.Controls.Add(noAccountLabel);
-			backroundSmallPanel.Controls.Add(signInButton);
+			backroundSmallPanel.Controls.Add(signUpButton);
 			backroundSmallPanel.Controls.Add(emailWarnLabel);
 			backroundSmallPanel.Controls.Add(passwordTextBox);
 			backroundSmallPanel.Controls.Add(emailTextBox);
 			backroundSmallPanel.Controls.Add(seConnecterLabel);
 			backroundSmallPanel.Controls.Add(logoPictureBox);
-			backroundSmallPanel.Location = new Point(333, 48);
+			backroundSmallPanel.Location = new Point(333, 46);
 			backroundSmallPanel.Name = "backroundSmallPanel";
-			backroundSmallPanel.Size = new Size(598, 585);
+			backroundSmallPanel.Size = new Size(598, 588);
 			backroundSmallPanel.TabIndex = 1;
+			// 
+			// successMessageLabel
+			// 
+			successMessageLabel.AutoSize = true;
+			successMessageLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+			successMessageLabel.ForeColor = Color.FromArgb(138, 192, 84);
+			successMessageLabel.Location = new Point(37, 505);
+			successMessageLabel.Name = "successMessageLabel";
+			successMessageLabel.Size = new Size(287, 20);
+			successMessageLabel.TabIndex = 14;
+			successMessageLabel.Text = "Votre demande a été créée avec succès. ";
+			successMessageLabel.Visible = false;
+			// 
+			// nameWarnLabel
+			// 
+			nameWarnLabel.AutoSize = true;
+			nameWarnLabel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+			nameWarnLabel.ForeColor = Color.FromArgb(217, 68, 82);
+			nameWarnLabel.Location = new Point(37, 222);
+			nameWarnLabel.Name = "nameWarnLabel";
+			nameWarnLabel.Size = new Size(325, 20);
+			nameWarnLabel.TabIndex = 13;
+			nameWarnLabel.Text = "Le nom et le prénom ne peuvent pas êtres vides";
+			nameWarnLabel.Visible = false;
 			// 
 			// passwordConfirmationWarnLabel
 			// 
@@ -134,36 +162,38 @@
 			// 
 			createRequestLinkLabel.AutoSize = true;
 			createRequestLinkLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-			createRequestLinkLabel.Location = new Point(239, 529);
+			createRequestLinkLabel.Location = new Point(239, 527);
 			createRequestLinkLabel.Name = "createRequestLinkLabel";
 			createRequestLinkLabel.Size = new Size(125, 21);
 			createRequestLinkLabel.TabIndex = 6;
 			createRequestLinkLabel.TabStop = true;
 			createRequestLinkLabel.Text = "Connectez vous";
+			createRequestLinkLabel.Click += createRequestLinkLabel_Click;
 			// 
 			// noAccountLabel
 			// 
 			noAccountLabel.AutoSize = true;
 			noAccountLabel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-			noAccountLabel.Location = new Point(37, 529);
+			noAccountLabel.Location = new Point(37, 527);
 			noAccountLabel.Name = "noAccountLabel";
 			noAccountLabel.Size = new Size(206, 21);
 			noAccountLabel.TabIndex = 6;
 			noAccountLabel.Text = "Vous avez déjà un compte?";
 			// 
-			// signInButton
+			// signUpButton
 			// 
-			signInButton.BackColor = Color.FromArgb(138, 192, 84);
-			signInButton.FlatAppearance.BorderSize = 0;
-			signInButton.FlatStyle = FlatStyle.Flat;
-			signInButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-			signInButton.ForeColor = Color.White;
-			signInButton.Location = new Point(37, 460);
-			signInButton.Name = "signInButton";
-			signInButton.Size = new Size(175, 50);
-			signInButton.TabIndex = 5;
-			signInButton.Text = "Se connecter";
-			signInButton.UseVisualStyleBackColor = false;
+			signUpButton.BackColor = Color.FromArgb(138, 192, 84);
+			signUpButton.FlatAppearance.BorderSize = 0;
+			signUpButton.FlatStyle = FlatStyle.Flat;
+			signUpButton.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+			signUpButton.ForeColor = Color.White;
+			signUpButton.Location = new Point(37, 452);
+			signUpButton.Name = "signUpButton";
+			signUpButton.Size = new Size(192, 50);
+			signUpButton.TabIndex = 5;
+			signUpButton.Text = "Créer un compte";
+			signUpButton.UseVisualStyleBackColor = false;
+			signUpButton.Click += signUpButton_Click;
 			// 
 			// emailWarnLabel
 			// 
@@ -238,6 +268,8 @@
 			MaximizeBox = false;
 			Name = "signUpFrm";
 			Text = "Créer un compte • OCP";
+			FormClosed += signUpFrm_FormClosed;
+			Shown += signUpFrm_Shown;
 			backroundSmallPanel.ResumeLayout(false);
 			backroundSmallPanel.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
@@ -250,7 +282,7 @@
 		private Label passwordWarnLabel;
 		private LinkLabel createRequestLinkLabel;
 		private Label noAccountLabel;
-		private Button signInButton;
+		private Button signUpButton;
 		private Label emailWarnLabel;
 		private MaskedTextBox passwordTextBox;
 		private MaskedTextBox emailTextBox;
@@ -260,5 +292,7 @@
 		private MaskedTextBox firstNameTextBox;
 		private Label passwordConfirmationWarnLabel;
 		private MaskedTextBox passwordConfirmTextBox;
+		private Label nameWarnLabel;
+		private Label successMessageLabel;
 	}
 }

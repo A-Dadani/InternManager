@@ -67,8 +67,8 @@ namespace InternManagerUI
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Erreur lors de l'ajout du stagiaire: " + ex.Message , "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Cursor = Cursors.Default;
+				MessageBox.Show("Erreur lors de l'ajout du stagiaire: " + ex.Message , "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				Close();
 			}
 

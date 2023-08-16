@@ -17,5 +17,6 @@ namespace InternManagerLibrary
 		void InsertIntern(InternModel intern);
 		void DeleteIntern(int id);
 		void DeleteIntern(InternModel intern);
+		void CreateSignupRequest(AdminModel adminModel, string password);
 	}
 }

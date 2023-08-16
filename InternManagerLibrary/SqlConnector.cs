@@ -370,5 +370,18 @@ namespace InternManagerLibrary
 		{
 			DeleteIntern(intern.Id);
 		}
+
+		public void CreateSignupRequest(AdminModel adminModel, string password)
+		{
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+			string insertQuery = @"INSERT INTO `admins` (`full_name`, `email`, `password`, `is_confirmed`) VALUES ('" 
+				+ adminModel.FullName.Replace("'", "''") + "', '" 
+				+ adminModel.Email + "', '" 
+				+ HashPasswordSHA256(password) + "', '0');";
+			MySqlCommand insertCommand = new MySqlCommand(insertQuery, connection);
+			connection.Open();
+			insertCommand.ExecuteNonQuery();
+			connection.Close();
+		}
 	}
 }
