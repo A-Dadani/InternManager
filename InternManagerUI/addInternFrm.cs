@@ -1,4 +1,5 @@
 ﻿using InternManagerLibrary;
+using InternManagerUI.Partials;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,6 +34,8 @@ namespace InternManagerUI
 
 		private void submitPanel_Click(object? sender, EventArgs e)
 		{
+			Cursor = Cursors.WaitCursor;
+
 			if (!ValidateInputAndShowError())
 			{
 				return;
@@ -58,9 +61,20 @@ namespace InternManagerUI
 				parrainTextBox.Text
 			);
 
-			GlobalConfig.Connection.InsertIntern(newIntern);
+			try
+			{ 
+				GlobalConfig.Connection.InsertIntern(newIntern);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erreur lors de l'ajout du stagiaire: " + ex.Message , "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				Cursor = Cursors.Default;
+				Close();
+			}
 
-			//TODO: Success message or something
+			((manageInternsFrm)Owner).RefreshSelf();
+			Cursor = Cursors.Default;
+			Close();
 		}
 
 		private bool ValidateInputAndShowError()

@@ -84,7 +84,7 @@
 			headerPanel.Dock = DockStyle.Top;
 			headerPanel.Location = new Point(0, 0);
 			headerPanel.Name = "headerPanel";
-			headerPanel.Size = new Size(848, 67);
+			headerPanel.Size = new Size(1077, 67);
 			headerPanel.TabIndex = 0;
 			// 
 			// printPanel
@@ -92,7 +92,7 @@
 			printPanel.BackColor = Color.FromArgb(59, 137, 218);
 			printPanel.Controls.Add(printLogo);
 			printPanel.Controls.Add(printLabel);
-			printPanel.Location = new Point(497, 11);
+			printPanel.Location = new Point(722, 11);
 			printPanel.Name = "printPanel";
 			printPanel.Size = new Size(150, 44);
 			printPanel.TabIndex = 3;
@@ -127,7 +127,7 @@
 			deletePanel.BackColor = Color.FromArgb(232, 86, 63);
 			deletePanel.Controls.Add(deleteLogoPictureBox);
 			deletePanel.Controls.Add(deleteLabel);
-			deletePanel.Location = new Point(663, 11);
+			deletePanel.Location = new Point(888, 11);
 			deletePanel.Name = "deletePanel";
 			deletePanel.Size = new Size(173, 44);
 			deletePanel.TabIndex = 2;
@@ -173,7 +173,7 @@
 			horSperatorPanel.Dock = DockStyle.Top;
 			horSperatorPanel.Location = new Point(0, 67);
 			horSperatorPanel.Name = "horSperatorPanel";
-			horSperatorPanel.Size = new Size(848, 2);
+			horSperatorPanel.Size = new Size(1077, 2);
 			horSperatorPanel.TabIndex = 1;
 			// 
 			// bodyPanel
@@ -209,7 +209,7 @@
 			bodyPanel.Dock = DockStyle.Fill;
 			bodyPanel.Location = new Point(0, 69);
 			bodyPanel.Name = "bodyPanel";
-			bodyPanel.Size = new Size(848, 549);
+			bodyPanel.Size = new Size(1077, 549);
 			bodyPanel.TabIndex = 2;
 			// 
 			// civiliteLabel
@@ -496,7 +496,7 @@
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(848, 618);
+			ClientSize = new Size(1077, 618);
 			Controls.Add(bodyPanel);
 			Controls.Add(horSperatorPanel);
 			Controls.Add(headerPanel);

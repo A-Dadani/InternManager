@@ -234,7 +234,9 @@ namespace InternManagerUI.Partials
 
 		private void addPanel_Click(object? sender, EventArgs e)
 		{
-			new addInternFrm() { TopMost = true }.ShowDialog();
+			addInternFrm frm = new addInternFrm() { TopMost = true };
+			AddOwnedForm(frm);
+			frm.ShowDialog();
 		}
 	}
 }
