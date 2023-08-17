@@ -383,5 +383,80 @@ namespace InternManagerLibrary
 			insertCommand.ExecuteNonQuery();
 			connection.Close();
 		}
+
+		public List<AdminModel> GetSignupRequests(string searchQuery = null)
+		{
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			List<AdminModel> signupRequests = new List<AdminModel>();
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+			string requestsSelectionQuery = @"SELECT * FROM `admins` WHERE is_confirmed=false";
+			MySqlCommand requestsSelectionCommand = new MySqlCommand(requestsSelectionQuery, connection);
+			connection.Open();
+			MySqlDataReader requestsReader = requestsSelectionCommand.ExecuteReader();
+
+			string[] searchKeywords = Array.Empty<string>();
+
+			if (searchQuery != null)
+			{
+				searchKeywords = searchQuery.Split(' ');
+			}
+
+			while (requestsReader.Read())
+			{
+				AdminModel currAdmin = new AdminModel(
+						requestsReader.GetString("full_name"),
+						requestsReader.GetString("email"),
+						requestsReader.GetBoolean("is_confirmed")
+					);
+
+				string comparableString = currAdmin.FullName + " " + currAdmin.Email;
+
+				bool toBeAdded = true;
+				if (searchQuery != null)
+				{
+					foreach (string keyword in searchKeywords)
+					{
+						if (!comparableString.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+						{
+							toBeAdded = false;
+							break;
+						}
+					}
+				}
+
+				if (!toBeAdded) continue;
+
+				signupRequests.Add(currAdmin);
+			}
+
+			connection.Close();
+
+			return signupRequests;
+		}
+
+		public void DeleteSignupRequest(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void DeleteSignupRequest(AdminModel admin)
+		{
+			DeleteSignupRequest(admin.Id);
+		}
+
+		public void ApproveSignupRequest(int id)
+		{
+			throw new NotImplementedException();
+		}
+
+		public void ApproveSignupRequest(AdminModel admin)
+		{
+			ApproveSignupRequest(admin.Id);
+		}
 	}
 }

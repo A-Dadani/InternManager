@@ -18,5 +18,10 @@ namespace InternManagerLibrary
 		void DeleteIntern(int id);
 		void DeleteIntern(InternModel intern);
 		void CreateSignupRequest(AdminModel adminModel, string password);
+		List<AdminModel> GetSignupRequests(string searchQuery = null);
+		void DeleteSignupRequest(int id);
+		void DeleteSignupRequest(AdminModel admin);
+		void ApproveSignupRequest(int id);
+		void ApproveSignupRequest(AdminModel admin);
 	}
 }
