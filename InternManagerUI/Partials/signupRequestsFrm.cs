@@ -20,6 +20,8 @@ namespace InternManagerUI.Partials
 			InitializeComponent();
 			_owner = owner;
 
+			Helpers.BubbleClick(searchPanel, searchPanel_Click);
+			Helpers.BubbleHover(searchPanel, searchPanel_MouseEnter, searchPanel_MouseLeave);
 			RefreshTable(null);
 		}
 
@@ -137,17 +139,17 @@ namespace InternManagerUI.Partials
 				approveLinkLabel.LinkClicked += delegate
 				{
 					DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir approuver la demande de " + signupRequests[localIndex].FullName + "?",
-						"Confirmation", 
-						MessageBoxButtons.YesNo, 
+						"Confirmation",
+						MessageBoxButtons.YesNo,
 						MessageBoxIcon.Exclamation);
 
-					if (res == DialogResult.Yes) 
+					if (res == DialogResult.Yes)
 					{
 						try
 						{
 							GlobalConfig.Connection.ApproveSignupRequest(signupRequests[localIndex]);
 						}
-						catch (Exception ex) 
+						catch (Exception ex)
 						{
 							MessageBox.Show("Erreur fatale: " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
 							Environment.Exit(0);
@@ -169,11 +171,11 @@ namespace InternManagerUI.Partials
 				deleteLinkLabel.LinkClicked += delegate
 				{
 					DialogResult res = MessageBox.Show("Êtes-vous sûr de vouloir supprimer la demande de " + signupRequests[localIndex].FullName + "?",
-						"Confirmation", 
-						MessageBoxButtons.YesNo, 
+						"Confirmation",
+						MessageBoxButtons.YesNo,
 						MessageBoxIcon.Exclamation);
 
-					if (res == DialogResult.Yes) 
+					if (res == DialogResult.Yes)
 					{
 						try
 						{
@@ -197,6 +199,59 @@ namespace InternManagerUI.Partials
 		private void RefreshSelf()
 		{
 			_owner.RefreshSignUpRequests();
+		}
+
+		private void searchPanel_Click(object? sender, EventArgs e)
+		{
+			if (searchTextBox.Text == "Rechercher..." || string.IsNullOrEmpty(searchTextBox.Text))
+			{
+				RefreshTable(null);
+			}
+			else
+			{
+				RefreshTable(searchTextBox.Text.Trim());
+			}
+		}
+
+		private void searchPanel_MouseEnter(object? sender, EventArgs e)
+		{
+			searchPanel.BackColor = Helpers.DarkenRebrighten(searchPanel.BackColor, -0.25f);
+		}
+
+		private void searchPanel_MouseLeave(object? sender, EventArgs e)
+		{
+			searchPanel.BackColor = Helpers.DarkenRebrighten(searchPanel.BackColor, 0.25f);
+		}
+
+		private void searchTextBox_Enter(object sender, EventArgs e)
+		{
+			if (searchTextBox.Text == "Rechercher...")
+			{
+				searchTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+				searchTextBox.Text = "";
+			}
+		}
+
+		private void searchTextBox_Leave(object sender, EventArgs e)
+		{
+			if (string.IsNullOrWhiteSpace(searchTextBox.Text))
+			{
+				searchTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#646c77");
+				searchTextBox.Text = "Rechercher...";
+			}
+		}
+
+		private void signupRequestsFrm_Shown(object sender, EventArgs e)
+		{
+			searchPanel.Focus();
+		}
+
+		private void searchTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				searchPanel_Click(this, new EventArgs());
+			}
 		}
 	}
 }

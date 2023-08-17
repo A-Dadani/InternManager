@@ -67,6 +67,9 @@
 			searchPanel.Name = "searchPanel";
 			searchPanel.Size = new Size(190, 35);
 			searchPanel.TabIndex = 4;
+			searchPanel.Click += searchPanel_Click;
+			searchPanel.MouseEnter += searchPanel_MouseEnter;
+			searchPanel.MouseLeave += searchPanel_MouseLeave;
 			// 
 			// searchPictureBox
 			// 
@@ -101,6 +104,9 @@
 			searchTextBox.Size = new Size(721, 35);
 			searchTextBox.TabIndex = 3;
 			searchTextBox.Text = "Rechercher...";
+			searchTextBox.Enter += searchTextBox_Enter;
+			searchTextBox.KeyDown += searchTextBox_KeyDown;
+			searchTextBox.Leave += searchTextBox_Leave;
 			// 
 			// horSeparatorPanel
 			// 
@@ -162,6 +168,7 @@
 			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "signupRequestsFrm";
 			Text = "signupRequestsFrm";
+			Shown += signupRequestsFrm_Shown;
 			topParentPanel.ResumeLayout(false);
 			topParentPanel.PerformLayout();
 			searchPanel.ResumeLayout(false);
