@@ -119,7 +119,7 @@ namespace InternManagerLibrary
 
 			MySqlConnection connection = new MySqlConnection(_connectionString);
 
-			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `admins`";
+			string countSelectionQuery = @"SELECT COUNT(*) AS count FROM `admins` WHERE is_confirmed=true";
 			MySqlCommand countSelectionCommand = new MySqlCommand(countSelectionQuery, connection);
 			connection.Open();
 			MySqlDataReader countreader = countSelectionCommand.ExecuteReader();

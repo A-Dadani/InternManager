@@ -141,7 +141,7 @@
 			// warnLabel
 			// 
 			warnLabel.AutoSize = true;
-			warnLabel.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+			warnLabel.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point);
 			warnLabel.ForeColor = Color.FromArgb(232, 86, 63);
 			warnLabel.Location = new Point(61, 912);
 			warnLabel.Name = "warnLabel";
