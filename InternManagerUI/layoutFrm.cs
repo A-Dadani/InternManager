@@ -188,7 +188,7 @@ namespace InternManagerUI
 			//Load the content (partial)
 			Cursor = Cursors.WaitCursor;
 			contentPlaceholderPanel.Controls.Clear();
-			signupRequestsFrm signupRequestsFrmInst = new signupRequestsFrm() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+			signupRequestsFrm signupRequestsFrmInst = new signupRequestsFrm(this) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
 			signupRequestsFrmInst.FormBorderStyle = FormBorderStyle.None;
 			contentPlaceholderPanel.Controls.Add(signupRequestsFrmInst);
 			signupRequestsFrmInst.Show();
