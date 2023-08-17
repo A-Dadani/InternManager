@@ -409,6 +409,7 @@ namespace InternManagerLibrary
 			while (requestsReader.Read())
 			{
 				AdminModel currAdmin = new AdminModel(
+						requestsReader.GetInt32("id"),
 						requestsReader.GetString("full_name"),
 						requestsReader.GetString("email"),
 						requestsReader.GetBoolean("is_confirmed")
@@ -441,7 +442,23 @@ namespace InternManagerLibrary
 
 		public void DeleteSignupRequest(int id)
 		{
-			throw new NotImplementedException();
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string deleteQuery = @"DELETE FROM `admins` WHERE `id` = " + id.ToString();
+			MySqlCommand deleteCommand = new MySqlCommand(deleteQuery, connection);
+			connection.Open();
+			int nDeletedRows = deleteCommand.ExecuteNonQuery();
+			if (nDeletedRows == 0)
+			{
+				connection.Close();
+				throw new Exception("unknown_error");
+			}
+			connection.Close();
 		}
 
 		public void DeleteSignupRequest(AdminModel admin)
@@ -451,7 +468,23 @@ namespace InternManagerLibrary
 
 		public void ApproveSignupRequest(int id)
 		{
-			throw new NotImplementedException();
+			if (!GlobalConfig.IsUserAuthenticated())
+			{
+				throw new Exception("not_authenticated");
+			}
+
+			MySqlConnection connection = new MySqlConnection(_connectionString);
+
+			string patchQuery = @"UPDATE `admins` SET is_confirmed=true WHERE id=" + id.ToString();
+			MySqlCommand patchCommand = new MySqlCommand(patchQuery, connection);
+			connection.Open();
+			int nPatchedRows = patchCommand.ExecuteNonQuery();
+			if (nPatchedRows == 0)
+			{
+				connection.Close();
+				throw new Exception("unknwon_error");
+			}
+			connection.Close();
 		}
 
 		public void ApproveSignupRequest(AdminModel admin)

@@ -197,7 +197,12 @@ namespace InternManagerUI
 
 		public void RefreshManageInterns()
 		{
-			manageInternsPanel_Click(null, null);
+			manageInternsPanel_Click(null, new EventArgs());
+		}
+
+		public void RefreshSignUpRequests()
+		{
+			signupRequestsPanel_Click(null, new EventArgs());
 		}
 	}
 }

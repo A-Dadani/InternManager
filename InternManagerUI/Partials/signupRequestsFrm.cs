@@ -143,7 +143,17 @@ namespace InternManagerUI.Partials
 
 					if (res == DialogResult.Yes) 
 					{
-						GlobalConfig.Connection.ApproveSignupRequest(signupRequests[localIndex]);
+						try
+						{
+							GlobalConfig.Connection.ApproveSignupRequest(signupRequests[localIndex]);
+						}
+						catch (Exception ex) 
+						{
+							MessageBox.Show("Erreur fatale: " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							Environment.Exit(0);
+						}
+
+						RefreshSelf();
 					}
 				};
 
@@ -165,15 +175,28 @@ namespace InternManagerUI.Partials
 
 					if (res == DialogResult.Yes) 
 					{
-						GlobalConfig.Connection.DeleteSignupRequest(signupRequests[localIndex]);
+						try
+						{
+							GlobalConfig.Connection.DeleteSignupRequest(signupRequests[localIndex]);
+						}
+						catch (Exception ex)
+						{
+							MessageBox.Show("Erreur fatale: " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							Environment.Exit(0);
+						}
+						RefreshSelf();
 					}
 				};
 
 				requestsTable.Controls.Add(approveLinkLabel, content.Length, i + 1);
 				requestsTable.Controls.Add(deleteLinkLabel, content.Length + 1, i + 1);
 			}
-
 			requestsTable.Show();
+		}
+
+		private void RefreshSelf()
+		{
+			_owner.RefreshSignUpRequests();
 		}
 	}
 }
